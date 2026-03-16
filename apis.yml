@@ -26,8 +26,8 @@ type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2024-12-03'
-modified: '2024-12-30'
-position: Consuming
+modified: '2026-03-16'
+position: Consumer
 description: >-
   The U.S. Election Assistance Commission (EAC) was established by the Help
   America Vote Act of 2002 (HAVA). The EAC is an independent, bipartisan
@@ -38,5 +38,5 @@ description: >-
   the use of HAVA funds. 
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
