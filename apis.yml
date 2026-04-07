@@ -5,8 +5,7 @@ url: >2-
 apis:
   - aid: election-assistance-commission:election-assistance-commission
     name: Election Assistance Commission
-    tags:
-      - API
+    tags: []
     humanURL: https://www.eac.gov
     properties:
       - url: https://www.eac.gov
@@ -19,8 +18,8 @@ apis:
       NW, Suite 200 ...
 name: Election Assistance Commission
 tags:
-  - Federal Government
   - Elections
+  - Federal Government
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
