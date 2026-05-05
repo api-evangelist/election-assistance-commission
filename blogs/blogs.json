@@ -1,0 +1,13 @@
+{
+  "repo": "election-assistance-commission",
+  "feeds": [
+    {
+      "source": "https://www.eac.gov/rss.xml",
+      "feed_url": "https://www.eac.gov/rss.xml",
+      "saved": 10,
+      "title": "U.S. Election Assistance Commission"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:27:30Z"
+}
