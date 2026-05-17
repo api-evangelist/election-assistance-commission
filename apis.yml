@@ -10,7 +10,7 @@ description: >-
   use of HAVA funds. The EAC publishes the Election Administration and
   Voting Survey (EAVS) datasets and operates an RSS news feed; it does not
   publish a formal developer API.
-type: Contract
+kind: contract
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
