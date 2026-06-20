@@ -13,7 +13,7 @@ description: >-
 kind: contract
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Federal Government
   - Elections
@@ -35,7 +35,7 @@ apis:
       access is currently limited to dataset downloads and an RSS news feed
       rather than a REST API.
     humanURL: https://www.eac.gov
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     tags:
       - Federal Government
       - Elections
