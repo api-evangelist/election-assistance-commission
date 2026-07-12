@@ -52,6 +52,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: DomainSecurity
+    url: security/election-assistance-commission-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/u-s-election-assistance-commission
   - name: EAC Website
