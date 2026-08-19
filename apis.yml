@@ -35,7 +35,7 @@ created: '2024-12-03'
 modified: '2026-04-28'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/election-assistance-commission/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
   - aid: election-assistance-commission:eac
     name: Election Assistance Commission
