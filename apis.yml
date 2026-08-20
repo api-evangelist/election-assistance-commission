@@ -27,6 +27,11 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/election-assistance-commission.png
 tags:
+  - Federal-Government
+  - Elections
+  - Voting
+  - Open Data
+tags_raw:
   - Federal Government
   - Elections
   - Voting
@@ -49,6 +54,11 @@ apis:
     humanURL: https://www.eac.gov
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     tags:
+      - Federal-Government
+      - Elections
+      - Voting
+      - Open Data
+    tags_raw:
       - Federal Government
       - Elections
       - Voting
