@@ -1,0 +1,71 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.eac.gov (site search and JSON:API title filtering on 2026-09-06),
+  https://www.eac.gov/jsonapi response headers, https://www.eac.gov/data.json
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: >-
+  The EAC operates its JSON:API surface without any published lifecycle governance. There is
+  no version scheme, no deprecation policy, no sunset signalling, no SLA and no status page.
+  This is not a criticism of the data — it is the predictable consequence of the surface being
+  an unadvertised by-product of the CMS rather than a declared product. Recorded here as a
+  measured absence, with the probes that establish it.
+versioning:
+  scheme: none
+  in_path: false
+  in_header: false
+  policy_published: false
+  note: >-
+    Responses carry jsonapi.version "1.0", which is the JSON:API specification version, not an
+    EAC API version. The addressable contract is the Drupal content model; renaming a content
+    type or a field would change every path and attribute name with no notice and no redirect.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No RFC 8594 Sunset or Deprecation header was returned on any of the 216 resource-type
+    probes on 2026-09-06. Resource types that have already fallen out of use are simply empty
+    (node--jurisdiction_data, taxonomy_term--eavs_states, paragraph--eavs_data) or removed from
+    the index with no announcement.
+status_page:
+  published: false
+  probed:
+    - url: https://www.eac.gov/status
+      status: 404
+  note: >-
+    No status page, no uptime history, no incident feed. During this pass three collections
+    (node--event, user--user, token_custom--custom) returned HTTP 503 "Technical Difficulties"
+    persistently, and there is no EAC-published surface on which a consumer could have learned
+    that.
+sla:
+  published: false
+  note: No service level agreement or availability commitment is published for any EAC web surface.
+changelog:
+  api_changelog_published: false
+  note: >-
+    The EAC publishes a newsroom (https://www.eac.gov/news) and a blog
+    (https://www.eac.gov/blogs) and an RSS feed (https://www.eac.gov/rss.xml), and certification
+    decisions are announced there, but none of these is a changelog for the API surface or its
+    content model. The open-data catalog at https://www.eac.gov/data.json carries per-dataset
+    `modified` dates, which is the nearest thing to a dated change signal the EAC publishes.
+data_freshness_signals:
+  - signal: Last-Modified and ETag response headers
+    observed: true
+    note: Per-resource, and the only reliable staleness check available to a consumer.
+  - signal: '`changed` and `created` attributes on every content resource'
+    observed: true
+    note: >-
+      ISO 8601 timestamps on every node, media and taxonomy term. A consumer can poll
+      ?sort=-changed to detect updates — the closest thing to an event surface the EAC offers.
+  - signal: 'cache-control: max-age=31536000, public'
+    observed: true
+    note: >-
+      A one-year cache directive on records that do change (voting system certification status,
+      Engineering Change Orders). Callers who need current data should use conditional requests.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

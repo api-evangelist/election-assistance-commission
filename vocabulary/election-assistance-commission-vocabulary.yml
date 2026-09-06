@@ -1,0 +1,475 @@
+generated: '2026-09-06'
+method: probed
+source: https://www.eac.gov/jsonapi/taxonomy_term/<vocabulary> — full pagination walk of each vocabulary
+  on 2026-09-06
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: 'Controlled vocabularies the EAC maintains and serves live over its JSON:API. These are the EAC''s
+  own published terms, harvested verbatim from taxonomy_term collections — not a vocabulary API Evangelist
+  invented for it. The certification and accreditation vocabularies are the ones with regulatory weight:
+  four terms govern the status of every certified voting system in the United States, and two govern every
+  accredited test laboratory. The EAC does not publish these anywhere as a vocabulary; they are only reachable
+  through the undocumented API.'
+vocabulary_count: 19
+term_count: 315
+vocabularies:
+- id: article_type
+  name: Article Type
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/article_type
+  term_count: 2
+  description: Whether an article is a blog post or a news item.
+  terms:
+  - Blog
+  - News
+- id: certification_statuses
+  name: Certification Statuses
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/certification_statuses
+  term_count: 4
+  description: Lifecycle state of a voting system inside the EAC Testing and Certification Program. Applied
+    to node--voting_system via field_certification_status.
+  terms:
+  - Certified System
+  - Systems Under Test
+  - Terminated Systems
+  - Withdrawn or Decertified Systems
+  note: Four terms carry the entire regulatory state machine for 117 voting systems. There is no "provisional"
+    or "conditional" state.
+- id: ch_award
+  name: Ch Award
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/ch_award
+  term_count: 2
+  description: Clearinghouse (Clearie) Award tier.
+  terms:
+  - Honorable Mention
+  - Winner
+- id: ch_category
+  name: Ch Category
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/ch_category
+  term_count: 27
+  description: Clearinghouse Award category — the programme areas the EAC recognises election offices
+    for.
+  terms:
+  - Accessibility
+  - Best Practices for Improving Accessibility for Voters with Disabilities
+  - Best Practices in Recruiting, Retaining, and Training Poll Workers
+  - Creative and Original "I Voted" Stickers
+  - Creative and Original I Voted Sticker Design
+  - Cybersecurity & Technology
+  - Distinguished Voter Education and Communications Initiatives
+  - Distinguished Voter Education and Communications Initiatives - Large
+  - Distinguished Voter Education and Communications Initiatives - Small/Medium
+  - Election Official Association Program
+  - Exemplary Contingency Planning and Emergency Response Efforts
+  - Exemplary Services to Assist Military and Overseas Voters
+  - HAVA Grants
+  - I Voted Stickers
+  - Improving Accessibility for Voters with Disabilities
+  - Innovation and New Tools in Election Security and Technology
+  - Innovations or New Practices in Election Administration
+  - Outstanding Election Official State Association Program
+  - Outstanding Election Official State Association Program or Local Office
+  - Outstanding Innovation in Election Cybersecurity and Technology
+  - Outstanding Innovations
+  - Outstanding Innovations in Election Cybersecurity and Technology
+  - Outstanding Innovations in Elections - Large
+  - Outstanding Innovations in Elections - Small/Medium
+  - Outstanding Use of HAVA Grants in Election Modernization
+  - Outstanding Use of HAVA Grants in Elections Modernization
+  - Poll Workers
+- id: document_category
+  name: Document Category
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/document_category
+  term_count: 122
+  description: Document classification vocabulary applied to media--document. The largest controlled vocabulary
+    in the estate.
+  terms:
+  - Absentee Ballots and Early Voting
+  - Agency Financial Report (AFR)
+  - Agency performance report
+  - Agenda
+  - Amendment
+  - Annual report
+  - Audit Work Plan
+  - Ballot Design
+  - Best practices
+  - Biography
+  - Changes to Certified Voting Systems
+  - Charter
+  - Checklist
+  - Checklist
+  - Checklist
+  - Commission Documents
+  - Congressional budget justification/request
+  - Correspondence - States
+  - Correspondence - Testing and Certification
+  - Data set
+  - Designees
+  - Disability
+  - Discussion questions
+  - Documents under consideration
+  - Draft
+  - EAC Letter to State
+  - EAC Operations
+  - Election Glossary
+  - Election Management Guidelines
+  - Employee Satisfaction
+  - Fact Sheets
+  - Financial
+  - Financial Statement
+  - FISMA Report
+  - FOIA
+  - Form
+  - Forms - Federal Standards
+  - Forms - Voter Registration
+  - Frequently Asked Questions (FAQs)
+  - Funding Advisory Opinions
+  - Future of California Elections
+  - Glossaries of Election Terminology
+  - Glossary
+  - Guide
+  - Initiative
+  - Inspector General Manual
+  - Inspector General Reports
+  - Job listing
+  - Letter
+  - Limited English Proficiency
+  - Long Lines and Wait Times
+  - Managing Election Technology
+  - Manuals
+  - Materials and Research Submissions
+  - Memo
+  - Military and Overseas
+  - Minutes
+  - Motion
+  - National Association of Secretaries of State
+  - National Conference of State Legislatures
+  - National Council on Disability
+  - Natural Disasters
+  - Newsletter
+  - Newsletters
+  - Notice
+  - Notices of Clarification (NOC)
+  - Participants
+  - PCEA Public Comments
+  - PCEA Public Meetings
+  - Plan
+  - Policies and Manuals
+  - Poll Workers
+  - Polling Places
+  - Presentation
+  - Press Release
+  - Principles and Guidelines
+  - Provisional Ballots
+  - Quick Start Guides
+  - Quick Tips
+  - Remarks
+  - Report
+  - Reports - Election Admin. & Voting Survey
+  - Reports - HAVA Funding
+  - Reports - State Voting Systems
+  - Request for information
+  - Request for Investigation
+  - Request for proposals
+  - Requests for Interpretation (RFI)
+  - Resolution
+  - resolutions page - advisory board
+  - resolutions page - standards board
+  - Response
+  - Response
+  - Roster
+  - Standard federal forms
+  - State Plan
+  - Statement
+  - Statements & Resolutions
+  - Statements &amp; Resolutions
+  - Strategic Plan
+  - Study
+  - Summary
+  - Survey
+  - Tally Vote
+  - Testimony
+  - Testing and Certification Program Manuals
+  - Transcript
+  - Verbatim
+  - Voter Education
+  - Voter Guides
+  - Voter Rolls and Poll Books
+  - Voting System Advisory Notices
+  - Voting System Certification Documents
+  - Voting System Correspondence
+  - Voting System RFP Repository
+  - Voting System Test Plans
+  - Voting System Test Reports
+  - Voting System Testing and Certification Program E-Newsletter
+  - Voting Systems Status Reports
+  - Voting Technology
+  - VVSG Public Comments
+  - White Paper
+- id: faq_categories
+  name: Faq Categories
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/faq_categories
+  term_count: 39
+  description: FAQ grouping, heavily weighted toward HAVA grant administration.
+  terms:
+  - 2018 HAVA Security Funds
+  - 2020 and 2018 HAVA Funds
+  - 2020 CARES Grant
+  - 2020 HAVA CARES Funds
+  - 2020 HAVA Security Funds
+  - 2020 HAVA Security Funds
+  - About EAC
+  - Accessibility
+  - CARES and HAVA
+  - Closeout
+  - Closeout Process
+  - Compliance & Oversight
+  - EAC test1
+  - Election Administration and Voting Survey FAQs
+  - Election Administration and Voting Survey FAQs
+  - Election Worker FAQ
+  - FAQ test
+  - FOIA
+  - General FAQs
+  - Guidance on Use of HAVA Funds for Expenses Related to COVID-19
+  - HAVA Discretionary Grants
+  - HAVA Election Security Grants
+  - HAVA Grant FAQs
+  - HAVA Section 251, 101, 102 Grants
+  - National Mail Voter Registration Form
+  - National Voter Registration Act
+  - Post-Award
+  - Pre-Award
+  - QC_FAQ_Category_1
+  - Research
+  - Test Category
+  - Test2
+  - Testing and Certification
+  - Voters
+  - Voting System Certification
+  - Voting System Testing and Certification
+  - Windows Critical Update FAQ
+  - Zack Test Category
+  -  Guidance on Meeting Match in CARES Act Grants under HAVA 
+  note: Contains a duplicated term, "2020 HAVA Security Funds", appearing twice as distinct terms.
+- id: glossary_languages
+  name: Glossary Languages
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/glossary_languages
+  term_count: 7
+  description: Languages the EAC election glossary is translated into.
+  terms:
+  - Chinese
+  - English
+  - Japanese
+  - Korean
+  - Spanish
+  - Tagalong
+  - Vietnamese
+  note: '"Tagalong" is a misspelling of Tagalog in the EAC''s own published vocabulary, recorded here
+    verbatim as harvested.'
+- id: keyword_categories
+  name: Keyword Categories
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/keyword_categories
+  term_count: 26
+  description: Top-level keyword grouping applied across EAC content.
+  terms:
+  - Accessibility
+  - Annual Reports
+  - Commissioners
+  - Communications
+  - Correspondence
+  - Counties
+  - EAC Board
+  - EAC Offices
+  - EAVS
+  - Election Administration
+  - Factsheet
+  - Frequently Asked Questions
+  - Inspector General
+  - Jurisdication Type
+  - Language
+  - Manuals
+  - Meeting
+  - Payments and Grants
+  - Reports
+  - Research
+  - State
+  - Testing & Certification
+  - U.S. Territory
+  - Voter Registration
+  - Voter Resources
+  - Voting Systems
+- id: manufacturer_types
+  name: Manufacturer Types
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/manufacturer_types
+  term_count: 4
+  description: Corporate form (or inactivity) of a registered voting system manufacturer.
+  terms:
+  - Corporation
+  - Inactive
+  - Other
+  - Partnership
+- id: news_category
+  name: News Category
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/news_category
+  term_count: 8
+  description: News item classification, including the regulatory categories Advisory Notice and Testing
+    & Certification.
+  terms:
+  - Advisory Notice
+  - Alert
+  - Fact Sheet
+  - PCEA
+  - Press Releases
+  - Resolution
+  - Statement
+  - Testing & Certification
+- id: nvra_languages
+  name: Nvra Languages
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/nvra_languages
+  term_count: 3
+  description: Languages in which the National Mail Voter Registration Form is published. Term names are
+    given in the language itself.
+  terms:
+  - En Español
+  - English
+  - 中文
+  note: Three languages only — English, Spanish and Chinese — against seven in the glossary vocabulary.
+- id: ovr_status
+  name: Ovr Status
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/ovr_status
+  term_count: 3
+  description: Whether a state offers online voter registration. Applied to node--state_election_information
+    via field_ovr_status.
+  terms:
+  - No Online Voter Registration
+  - Online Voter Registration
+  - Voter Registration Not Required
+- id: payment_years
+  name: Payment Years
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/payment_years
+  term_count: 28
+  description: Fiscal years for which HAVA state requirement payments are recorded.
+  terms:
+  - '2003'
+  - '2004'
+  - '2005'
+  - '2006'
+  - '2007'
+  - '2008'
+  - '2009'
+  - '2010'
+  - '2011'
+  - '2012'
+  - '2013'
+  - '2014'
+  - '2015'
+  - '2016'
+  - '2017'
+  - '2018'
+  - '2019'
+  - '2020'
+  - '2021'
+  - '2022'
+  - '2023'
+  - '2024'
+  - '2025'
+  - '2026'
+  - '2027'
+  - '2028'
+  - '2029'
+  - '2030'
+- id: person_type
+  name: Person Type
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/person_type
+  term_count: 2
+  description: Whether a person record is EAC staff or a guest blogger.
+  terms:
+  - Blogger
+  - Staff
+- id: resource_type
+  name: Resource Type
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/resource_type
+  term_count: 4
+  description: Audience segmentation the EAC applies to its own guidance material.
+  terms:
+  - A Voter
+  - A Voting System Manufacturer
+  - An Election Administrator
+  - An Election Researcher
+- id: section
+  name: Section
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/section
+  term_count: 24
+  description: Site section taxonomy, which doubles as the language index for translated sections.
+  terms:
+  - About
+  - Chinese
+  - Contact
+  - Election Officials
+  - Election Technology
+  - ESTEP Program
+  - FOIA
+  - Grants
+  - Inspector General
+  - Japanese
+  - Korean
+  - Main
+  - Media
+  - National Poll Worker Recruitment Day
+  - No Fear Act
+  - OpenEAC
+  - PCEA
+  - Research and Data
+  - Spanish
+  - Tagalog
+  - Testing and Certification
+  - Vietnamese
+  - Voters
+  - Voting Equipment
+- id: staff_departments
+  name: Staff Departments
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/staff_departments
+  term_count: 6
+  description: EAC organisational units and statutory boards.
+  terms:
+  - Board of Advisors
+  - Disaster Preparedness and Recovery
+  - Executive
+  - Staff
+  - Standards Board
+  - Technical Guidelines Development Committee
+- id: state_voter_options
+  name: State Voter Options
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/state_voter_options
+  term_count: 2
+  description: Which voter-facing information option a state election information record carries.
+  terms:
+  - Online Voter Registration
+  - Voter Info
+- id: test_lab_statuses
+  name: Test Lab Statuses
+  endpoint: https://www.eac.gov/jsonapi/taxonomy_term/test_lab_statuses
+  term_count: 2
+  description: Accreditation state of a Voting System Test Laboratory. Applied to node--voting_system_test_lab
+    via field_status.
+  terms:
+  - Accredited
+  - Expired Accreditation
+not_harvested:
+  note: The resource index advertises 60 taxonomy vocabularies. The 19 harvested here are the ones with
+    domain meaning. The remainder are site-furniture vocabularies (uswds_classes, media_directories, galleries,
+    quick_tips, ai_tones) or return empty collections (eavs_states, tags, subscribers, program_type, test).
+  empty_confirmed:
+  - taxonomy_term--eavs_states
+  - taxonomy_term--tags
+  - taxonomy_term--subscribers
+  - taxonomy_term--program_type
+  - taxonomy_term--quick_tips
+  - taxonomy_term--ai_tones
+  - taxonomy_term--galleries
+  - taxonomy_term--media_directories
+  - taxonomy_term--test
+  - taxonomy_term--uswds_classes
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

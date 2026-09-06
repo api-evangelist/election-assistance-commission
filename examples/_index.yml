@@ -1,0 +1,48 @@
+generated: '2026-09-06'
+method: probed
+source: https://www.eac.gov/jsonapi
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+note: >-
+  Verbatim response bodies captured from live anonymous requests on 2026-09-06. Saved exactly as
+  returned. The test-lab example deliberately uses a sparse fieldset to exclude the named-contact
+  and phone fields those records carry.
+examples:
+  - file: election-assistance-commission-jsonapi-index-example.json
+    request: GET https://www.eac.gov/jsonapi
+    status: 200
+    describes: The resource-type index — 216 entity--bundle link relations.
+  - file: election-assistance-commission-voting-system-collection-example.json
+    request: >-
+      GET /jsonapi/node/voting_system?page[limit]=2&include=field_manufacturer,field_testing_lab,field_certification_status,field_testing_standard
+    status: 200
+    describes: >-
+      A voting system collection with the manufacturer, test lab, certification status and
+      testing standard side-loaded into `included`. The reference example for relationship
+      expansion on this API.
+  - file: election-assistance-commission-test-lab-sparse-fieldset-example.json
+    request: >-
+      GET /jsonapi/node/voting_system_test_lab?page[limit]=4&fields[node--voting_system_test_lab]=title,field_city,field_file_date&fields[taxonomy_term--test_lab_statuses]=name&include=field_status
+    status: 200
+    describes: Sparse fieldsets plus include — four accredited labs with their accreditation status.
+  - file: election-assistance-commission-eco-collection-example.json
+    request: GET /jsonapi/node/engineering_change_order?page[limit]=2&sort=-field_date_approved_by_eac
+    status: 200
+    describes: Descending sort on a date field; Engineering Change Orders newest first.
+  - file: election-assistance-commission-state-voter-info-example.json
+    request: GET /jsonapi/node/register_vote_and_contact_state?page[limit]=1
+    status: 200
+    describes: A per-state registration and voting record with its five election field groups.
+  - file: election-assistance-commission-error-400-example.json
+    request: GET /jsonapi/node/voting_system?filter[nope]=1
+    status: 400
+    describes: JSON:API error document for an invalid filter field.
+  - file: election-assistance-commission-error-405-readonly-example.json
+    request: POST /jsonapi/node/article
+    status: 405
+    describes: >-
+      The read-only proof — "JSON:API is configured to accept only read operations." The single
+      most important response on this surface for an agent to know about.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

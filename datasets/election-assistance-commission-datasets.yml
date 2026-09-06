@@ -1,0 +1,271 @@
+generated: '2026-09-06'
+method: probed
+source: https://www.eac.gov/data.json
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: The EAC serves a real, conformant federal open-data catalog at https://www.eac.gov/data.json
+  (HTTP 200, Project Open Data / DCAT-US v1.1). It is the machine index of the bulk data the EAC actually
+  wants people to use — above all the Election Administration and Voting Survey (EAVS) microdata, which
+  the JSON:API surface does NOT carry. The catalog is not linked from any developer page, is not referenced
+  from /.well-known/api-catalog, and is not mentioned on the Research and Data landing page; it is discoverable
+  only by knowing the federal convention.
+catalog:
+  url: https://www.eac.gov/data.json
+  http_status: 200
+  conformsTo: https://project-open-data.cio.gov/v1.1/schema
+  describedBy: https://project-open-data.cio.gov/v1.1/schema/catalog.json
+  context: https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld
+  type: dcat:Catalog
+  dataset_count: 11
+  saved_verbatim: datasets/election-assistance-commission-data-json.json
+assessment:
+  strengths:
+  - Valid Project Open Data v1.1 catalog with @context, conformsTo and describedBy declared.
+  - Rich keyword vocabulary per dataset (domestic absentee voting, provisional ballots, poll workers,
+    voting technology).
+  - Covers the EAVS series from 2012 through 2024.
+  gaps:
+  - Only 11 datasets, and 5 of the 11 are PDF reports rather than data.
+  - One entry ("Measuring the Impact of Recent Grants to Election Administrators Under the Help America
+    Vote Act") carries the literal identifier "N/A" and two distributions with no format declared — a
+    broken record in an otherwise valid catalog.
+  - Several distributions declare format as a prose list ("CSV, Excel, SPSS, Stata, SAS") in a single
+    string rather than one distribution per format, so a machine cannot select a format.
+  - The 2022 EAVS entry declares mediaType text/html — a link to a page, not a dataset.
+  - Nothing in the catalog references the live JSON:API at https://www.eac.gov/jsonapi, and nothing in
+    the JSON:API references the catalog. The EAC publishes two machine surfaces that do not know about
+    each other.
+datasets:
+- title: 2018 Election Administration and Voting Survey
+  identifier: EAVS2018
+  modified: '2022-06-28T20:36:08.196Z'
+  accessLevel: public
+  distributions:
+  - format: CSV, Excel, SPSS, Stata, SAS
+    mediaType: text/html
+    downloadURL: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+    accessURL: null
+  keyword:
+  - domestic absentee voting
+  - election administration
+  - elections
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voting technology
+- title: 2016 Election Administration and Voting Survey
+  identifier: EAVS2016
+  modified: '2017-06-30'
+  issued: '2017-06-01'
+  accessLevel: public
+  landingPage: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+  distributions:
+  - format: CSV, Excel, SPSS, Stata
+    mediaType: text/html
+    downloadURL: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+    accessURL: null
+  keyword:
+  - domestic absentee voting
+  - election administration
+  - elections
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voting technology
+- title: 2014 Election Administration and Voting Survey
+  identifier: EAVS2014
+  modified: '2015-06-30'
+  issued: '2015-06-30'
+  accessLevel: public
+  landingPage: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+  distributions:
+  - format: Excel, SPSS, DBF
+    mediaType: text/html
+    downloadURL: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+    accessURL: null
+  keyword:
+  - domestic absentee voting
+  - election administration
+  - elections
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voting technology
+- title: 2012 Election Administration and Voting Survey
+  identifier: EAVS2012
+  modified: '2013-09-01'
+  issued: '2013-09-01'
+  accessLevel: public
+  landingPage: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+  distributions:
+  - format: Excel, SPSS, DBF
+    mediaType: text/html
+    downloadURL: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+    accessURL: null
+  keyword:
+  - domestic absentee voting
+  - election administration
+  - elections
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voting technology
+- title: 2020 Election Administration and Voting Survey
+  identifier: EAVS2020
+  modified: '2023-11-27T20:54:55.432Z'
+  issued: '2021-08-16'
+  accessLevel: public
+  landingPage: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+  distributions:
+  - format: CSV, Excel, SPSS, Stata, SAS
+    mediaType: text/html
+    downloadURL: https://www.eac.gov/research-and-data/datasets-codebooks-and-surveys
+    accessURL: null
+  keyword:
+  - domestic absentee voting
+  - election administration
+  - elections
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voting technology
+- title: 2022 Election Administration and Voting Survey
+  identifier: EAVS2022
+  modified: '2024-04-05T19:55:41.146Z'
+  issued: '2023-06-01'
+  accessLevel: public
+  landingPage: https://www.eac.gov/research-and-data/studies-and-reports
+  distributions:
+  - format: null
+    mediaType: text/html
+    downloadURL: https://www.eac.gov/research-and-data/studies-and-reports
+    accessURL: null
+  keyword:
+  - Elections
+  - civilian absentee voting
+  - election administration
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voter registration
+  - voting technology
+- title: Measuring the Impact  of Recent Grants to  Election Administrators  Under the Help  America Vote
+    Act
+  identifier: N/A
+  modified: '2025-05-22T18:11:12.627Z'
+  issued: '2024-12-01'
+  accessLevel: public
+  landingPage: https://www.eac.gov/sites/default/files/2025-01/Election_Security_Grant_Report_Final_508.pdf
+  distributions:
+  - format: null
+    mediaType: null
+    downloadURL: null
+    accessURL: https://www.eac.gov/research-and-data/report-measuring-impact-recent-grants-election-administrators-under-hava
+  - format: null
+    mediaType: null
+    downloadURL: null
+    accessURL: https://www.eac.gov/research-and-data/report-measuring-impact-recent-grants-election-administrators-under-hava
+  keyword:
+  - Elections
+  - election administration
+  - election grants
+  - election security
+- title: The History, Evolution, and Future Directions of the Election Administration and Voting Survey
+    (EAVS)
+  identifier: eavshist
+  modified: '2025-09-18T20:35:18.816Z'
+  issued: '2025-05-28'
+  accessLevel: public
+  landingPage: https://www.eac.gov/research-and-data/eavs-retrospective
+  distributions:
+  - format: null
+    mediaType: application/pdf
+    downloadURL: null
+    accessURL: null
+  keyword:
+  - domestic absentee voting
+  - domestic elections
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voter registration
+  - voting technology
+- title: Election Administration and Voting Survey 2024 Comprehensive Report
+  identifier: 2024EAVS
+  modified: '2025-09-19T15:22:00.840Z'
+  issued: '2025-06-01'
+  accessLevel: public
+  landingPage: https://www.eac.gov/research-and-data/studies-and-reports
+  distributions:
+  - format: null
+    mediaType: application/pdf
+    downloadURL: https://www.eac.gov/research-and-data/studies-and-reports
+    accessURL: null
+  keyword:
+  - Elections
+  - civilian absentee voting
+  - election administration
+  - military absentee voting
+  - overseas citizen voting
+  - poll workers
+  - polling places
+  - precinct
+  - provisional ballots
+  - voter registration
+  - voting technology
+- title: Strengthening the Election Workforce Opportunities to Enhance Capacity and Readiness
+  identifier: Workforce1
+  modified: '2026-08-26T19:27:03.068Z'
+  issued: '2026-06-16'
+  accessLevel: public
+  landingPage: https://www.eac.gov/sites/default/files/2026-06/Strengthening_the_Election_Workforce_EAC_FINAL.pdf
+  distributions:
+  - format: null
+    mediaType: application/pdf
+    downloadURL: https://www.eac.gov/sites/default/files/2026-06/Strengthening_the_Election_Workforce_EAC_FINAL.pdf
+    accessURL: null
+  keyword:
+  - domestic elections
+  - election staffing
+  - election workforce
+  - election workforce classification
+- title: Evaluating Federal  Grant Programs   to Improve Voting  Accessibility
+  identifier: Accessibilitygrants1
+  modified: '2026-08-26T19:42:10.292Z'
+  issued: '2026-08-01'
+  accessLevel: public
+  landingPage: https://www.eac.gov/sites/default/files/2026-08/EAC_Report_Federal_Grant_Programs_to_Improve_Voting_Accessibility.pdf
+  distributions:
+  - format: null
+    mediaType: application/pdf
+    downloadURL: https://www.eac.gov/sites/default/files/2026-08/EAC_Report_Federal_Grant_Programs_to_Improve_Voting_Accessibility.pdf
+    accessURL: null
+  keyword:
+  - Accessibility
+  - accessibility grants
+  - domestic elections
+  - election accessibility
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

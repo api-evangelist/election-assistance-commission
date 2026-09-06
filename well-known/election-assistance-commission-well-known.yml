@@ -1,0 +1,198 @@
+generated: '2026-09-06'
+method: probed
+source: anonymous HTTPS probes of the named /.well-known/ paths on every host in the EAC record
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: 'No /.well-known/ document is served on any EAC host. All five hosts were probed for the nine
+  named paths on 2026-09-06: www.eac.gov, eac.gov and vote.gov return real 404s; votebymail.gov and helpamericavote.gov
+  are catch-all redirect hosts that answer HTTP 200 with the same www.eac.gov HTML page for every path,
+  which is a shell rather than a document and is recorded as a miss. NO WellKnown, SecurityTxt or AgentCard
+  pointer is emitted from this probe, because none of these surfaces exists.'
+notable_absences:
+- path: /.well-known/security.txt
+  status: 404
+  note: The EAC does publish a full vulnerability disclosure policy at https://www.eac.gov/vulnerability-disclosure-policy
+    (HTTP 200) — CISA BOD 20-01 shaped, with scope, authorization, a 45-day disclosure window and a reporting
+    form. It is simply not advertised at the RFC 9116 path, so no machine can find it. This is the single
+    cheapest machine-discoverability fix available to the EAC.
+- path: /.well-known/api-catalog
+  status: 404
+  note: The EAC serves an RFC-shaped catalog of its own bulk data at https://www.eac.gov/data.json (Project
+    Open Data v1.1, 11 datasets, HTTP 200) and a live JSON:API at https://www.eac.gov/jsonapi (HTTP 200,
+    216 resource types). Neither is linked from an api-catalog linkset.
+hosts:
+- host: www.eac.gov
+  note: Primary EAC web property and the host of the JSON:API surface. Every /.well-known/ path returns
+    a genuine Drupal 404 page.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+- host: eac.gov
+  note: Apex domain, same origin as www.eac.gov.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+- host: votebymail.gov
+  note: Catch-all redirect host. Every path — including paths that cannot exist — returns HTTP 200 with
+    the same 77,725-byte www.eac.gov HTML page (votebymail.gov/ itself resolves to https://www.eac.gov/voters/national-mail-voter-registration-form).
+    These 200s are SPA/catch-all shells, not documents, and are recorded as misses.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+- host: helpamericavote.gov
+  note: Catch-all redirect host. Every path returns HTTP 200 with the same 75,015-byte www.eac.gov HTML
+    page (helpamericavote.gov/ resolves to https://www.eac.gov/help-america-vote). These 200s are shells,
+    not documents, and are recorded as misses.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    file: null
+    note: HTTP 200 returning an HTML page shell, not a document — recorded as a miss.
+- host: vote.gov
+  note: Operated by the EAC (its GitHub org, github.com/eacgov, holds vote-gov-drupal, vote-gov-nvrf-app
+    and vote-gov-tf). The site root sits behind a Cloudflare bot challenge (HTTP 403 "Just a moment...")
+    for non-browser clients; the /.well-known/ paths themselves returned real 404s from the origin.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null

@@ -1,0 +1,208 @@
+generated: '2026-09-06'
+method: derived
+source: >-
+  openapi/election-assistance-commission-jsonapi-openapi.yml and the resource objects observed
+  at https://www.eac.gov/jsonapi on 2026-09-06 (relationships[] members and their resolved
+  `included` types)
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: >-
+  The entity graph behind the EAC's voting system certification programme, derived from the
+  live JSON:API. This is the part of the surface with genuine public value: it is the machine
+  form of the certified-voting-systems register, the accredited test-lab list and the
+  engineering change order log, joined to the manufacturers and standards they hang off.
+  Relationships below were confirmed by side-loading them with ?include= and reading the
+  resulting `included` types, not inferred from field names.
+identifiers:
+  primary: JSON:API resource id — a UUID, stable across the API
+  secondary:
+    - field: drupal_internal__nid
+      note: Drupal node id, present on every node; the integer that appears in legacy /node/NNN URLs.
+    - field: drupal_internal__tid
+      note: Drupal term id on taxonomy terms.
+    - field: drupal_internal__mid
+      note: Drupal media id on media entities.
+    - field: field_state_code
+      note: Two-letter state/territory code on taxonomy_term--states. The only join key to the outside world.
+  note: >-
+    There are no domain identifiers. A voting system has no EAC certification number field; a
+    manufacturer has field_code but no registry identifier a third party could resolve. Joining
+    this data to any other election dataset means matching on title strings or state codes.
+entities:
+  - name: node--voting_system
+    label: Certified voting system
+    count: 117
+    key_attributes:
+      - title
+      - field_version
+      - field_testing_status
+      - field_testing_application_date
+      - field_application_accepted_date
+      - field_certification_date
+      - field_withdrawn_decertified_date
+      - field_terminated_date
+    relationships:
+      - {type: belongs_to, target: node--manufacturer, via: field_manufacturer, confirmed: true}
+      - {type: belongs_to, target: node--voting_system_test_lab, via: field_testing_lab, confirmed: true}
+      - {type: belongs_to, target: node--testing_standard, via: field_testing_standard, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--certification_statuses, via: field_certification_status, confirmed: true}
+      - {type: belongs_to, target: taxonomy_term--voting_products, via: field_product, confirmed: false}
+      - {type: has_many, target: media--document, via: field_certification_media, confirmed: false}
+      - {type: has_many, target: media--document, via: field_test_report_media, confirmed: false}
+      - {type: has_many, target: media--document, via: field_advisory_notice_media, confirmed: false}
+      - {type: has_many, target: media--document, via: field_correspondence_media, confirmed: false}
+      - {type: has_many, target: media--document, via: field_testing_documents_media, confirmed: false}
+      - {type: has_many, target: media--document, via: field_termination_document_media, confirmed: false}
+      - {type: has_many, target: media--document, via: field_withdrawn_document_media, confirmed: false}
+    note: >-
+      The document relationships are doubled — field_certification and field_certification_media,
+      field_test_report and field_test_report_media, and so on. The `_media` variants point at
+      media--document; the unsuffixed ones are the older file-entity fields. A consumer should
+      read the `_media` side.
+  - name: node--manufacturer
+    label: Registered voting system manufacturer
+    count: 20
+    key_attributes: [title, field_short_title, field_code, field_company_url, field_city, field_zipcode,
+      field_manufacturer_application_d, field_manufacturer_approval_date, field_manufacturer_withdrawal_da]
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--states, via: field_state, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--manufacturer_types, via: field_manufacturer_type, confirmed: false}
+      - {type: has_many, target: node--voting_system, via: inverse of field_manufacturer, confirmed: true}
+    pii_note: >-
+      Carries field_manufacturer_contact and field_job_title naming individuals. Values are not
+      reproduced in this repository.
+  - name: node--voting_system_test_lab
+    label: Accredited Voting System Test Laboratory (VSTL)
+    count: 8
+    key_attributes: [title, field_city, field_zipcode, field_company_url, field_file_date]
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--test_lab_statuses, via: field_status, confirmed: true}
+      - {type: belongs_to, target: taxonomy_term--states, via: field_state, confirmed: false}
+      - {type: has_many, target: media--document, via: field_document_media, confirmed: false}
+      - {type: has_many, target: node--voting_system, via: inverse of field_testing_lab, confirmed: true}
+    pii_note: Carries field_test_lab_contact, field_job_title and field_phone. Values are not reproduced here.
+  - name: node--testing_standard
+    label: Voluntary Voting System Guidelines version
+    count: 5
+    key_attributes: [title, body, field_sort_order]
+    relationships:
+      - {type: has_many, target: media--document, via: field_guideline_media, confirmed: false}
+      - {type: has_many, target: media--document, via: field_interpretation_media, confirmed: false}
+      - {type: has_many, target: node--voting_system, via: inverse of field_testing_standard, confirmed: false}
+  - name: node--engineering_change_order
+    label: Engineering Change Order (ECO)
+    count: 275
+    key_attributes: [title, field_short_description_of_chang, field_impacted_device_system, field_eac_approver,
+      field_date_submitted_by_manufact, field_date_approved_by_vstl, field_date_approved_by_eac]
+    relationships:
+      - {type: belongs_to, target: node--manufacturer, via: field_manufacturer, confirmed: false}
+      - {type: belongs_to, target: node--voting_system_test_lab, via: field_testing_lab, confirmed: false}
+      - {type: has_many, target: media--document, via: field_additional_documentation, confirmed: false}
+    note: >-
+      Three dates on one record make the ECO the only place in this estate where a review
+      LATENCY is computable: manufacturer submission -> VSTL approval -> EAC approval.
+  - name: node--notice_of_clarification
+    label: Notice of Clarification (NOC)
+    count: 27
+    key_attributes: [title, field_description, field_noc_topic, field_date_noc, field_year_noc,
+      field_section_of_cert_manual, field_section_of_vstl]
+    relationships:
+      - {type: has_many, target: media--document, via: field_media, confirmed: false}
+  - name: node--nvra
+    label: National Voter Registration Act state page
+    count: 155
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--nvra_states, via: field_state, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--nvra_languages, via: field_supported_language, confirmed: false}
+    note: 155 records over ~50 states because the NVRA form is published per state PER LANGUAGE.
+  - name: node--state_election_information
+    label: State election information record
+    count: 113
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--states, via: field_state, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--ovr_status, via: field_ovr_status, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--state_voter_options, via: field_information_option, confirmed: false}
+  - name: node--register_vote_and_contact_state
+    label: State registration, voting and contact record
+    count: 56
+    key_attributes: [title, field_election_1 .. field_election_5, field_election_N_election_date,
+      field_election_N_registration_de, field_registration_lookup, field_polling_place_lookup,
+      field_link_for_register_to_vote, field_state_election_office_webs, field_phone_1_800_number]
+    relationships: []
+    note: >-
+      56 records = 50 states + DC + 5 territories. The most directly useful collection on the
+      whole surface for a consumer building a voter-facing tool: registration deadlines, election
+      dates and the state's own registration and polling-place lookup URLs, per jurisdiction.
+      Up to five elections are modelled as five repeated field groups rather than a child entity.
+  - name: node--es_funds
+    label: HAVA Election Security grant record
+    count: 56
+    relationships:
+      - {type: has_many, target: media--document, via: field_document_media, confirmed: false}
+    note: >-
+      Reporting is modelled as one field PER FISCAL YEAR (field_financial_report_fy18 through
+      field_financial_report_fy24_q3, plus request letters and state narratives by year), so the
+      schema itself has to be edited each year rather than a new child record added.
+  - name: node--state_funds
+    label: HAVA state grant financial record
+    count: 56
+    key_attributes: [field_total_award, field_federal_share, field_state_share_20_percent, field__total_payment]
+    note: Same per-fiscal-year field explosion as node--es_funds.
+  - name: node--clearinghouse_awards
+    label: Clearinghouse (Clearie) Award entry
+    count: 561
+    key_attributes: [field_program_title, field_program_summary, field_year, field_link, field_unique_hash]
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--ch_award, via: field_award, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--ch_category, via: field_ch_category, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--ch_state, via: field_ch_state, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--ch_office, via: field_office, confirmed: false}
+  - name: node--article
+    label: News article, blog post or press release
+    count: 495
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--article_type, via: field_article_type, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--news_category, via: field_news_category_term, confirmed: false}
+      - {type: has_many, target: taxonomy_term--blog_topics, via: field_blog_topic, confirmed: false}
+      - {type: has_many, target: media--document, via: field_document_media, confirmed: false}
+      - {type: belongs_to, target: node--person, via: field_person, confirmed: false, access: omitted}
+  - name: node--faqs
+    label: Frequently asked question
+    count: 378
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--faq_categories, via: field_faq_category, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--faq_sub_categories, via: field_faq_subcategory, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--faq_section, via: field_faq_sections, confirmed: false}
+      - {type: has_many, target: taxonomy_term--faq_tags, via: field_faq_tags, confirmed: false}
+  - name: media--document
+    label: Document media (PDF/Office)
+    relationships:
+      - {type: belongs_to, target: file--file, via: field_media_document, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--document_category, via: field_document_category, confirmed: false}
+    note: >-
+      The join between a certification record and the actual PDF. media--document -> file--file
+      -> `uri.url` is the two-hop path to a downloadable artifact.
+  - name: taxonomy_term--states
+    label: States and territories vocabulary
+    key_attributes: [name, field_state_code, description]
+    relationships:
+      - {type: belongs_to, target: taxonomy_term--country, via: field_country, confirmed: false}
+      - {type: belongs_to, target: taxonomy_term--states, via: parent, confirmed: false}
+inaccessible_entities:
+  - {name: node--person, reason: meta.omitted — insufficient authorisation for anonymous callers}
+  - {name: node--slideshow_slide, reason: meta.omitted}
+  - {name: node--state_payment_requirements, reason: meta.omitted}
+  - {name: user--user, reason: HTTP 503 on every attempt}
+  - {name: node--event, reason: HTTP 503 on every attempt}
+empty_entities:
+  - {name: node--jurisdiction_data, note: advertised, returns an empty collection}
+  - {name: paragraph--eavs_data, note: advertised, returns an empty collection}
+  - {name: taxonomy_term--eavs_states, note: advertised, returns an empty collection}
+confirmation_method: >-
+  Relationships marked confirmed: true were verified on 2026-09-06 by requesting
+  ?include=<relationship> and reading the resource types returned in `included`. Those marked
+  confirmed: false are read from the resource object's `relationships` member and its `related`
+  link, which names the target route, but were not individually side-loaded in this pass.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

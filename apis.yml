@@ -1,109 +1,228 @@
 aid: election-assistance-commission
 name: Election Assistance Commission
-description: >-
-  The U.S. Election Assistance Commission (EAC) was established by the Help
-  America Vote Act of 2002 (HAVA). The EAC is an independent, bipartisan
-  commission charged with developing guidance to meet HAVA requirements,
-  adopting voluntary voting system guidelines, and serving as a national
-  clearinghouse of information on election administration. The EAC also
-  accredits testing laboratories, certifies voting systems, and audits the
-  use of HAVA funds. The EAC publishes the Election Administration and
-  Voting Survey (EAVS) datasets and operates an RSS news feed; it does not
-  publish a formal developer API.
+description: 'The U.S. Election Assistance Commission (EAC) is an independent, bipartisan federal
+  commission established by the Help America Vote Act of 2002 (HAVA). It adopts the Voluntary Voting
+  System Guidelines, accredits voting system test laboratories, certifies voting systems, administers
+  and audits HAVA grant funds, and is the national clearinghouse for election administration information.
+  The EAC publishes no developer portal, no API documentation and no API key programme, but serves
+  two real anonymous machine surfaces it does not advertise: a live read-only JSON:API 1.0 at https://www.eac.gov/jsonapi
+  (Drupal 10, 216 resource types) carrying the certified voting system register, accredited test labs,
+  manufacturers, Engineering Change Orders, Notices of Clarification, NVRA state pages, per-state
+  registration deadlines, HAVA grant financials and 561 Clearinghouse Awards; and a Project Open Data
+  v1.1 catalog at https://www.eac.gov/data.json listing the EAVS bulk datasets. Both verified.'
 kind: contract
 deliveryModel:
-  model: unknown
+  model: public-api
   open_source: false
   commercial: false
-  callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  callable_host: true
+  label: Free public government API, anonymous and read-only
+  confidence: high
   source:
-  - none
-  generated: '2026-08-28'
-  method: derived
+  - https://www.eac.gov/jsonapi
+  - https://www.eac.gov/data.json
+  generated: '2026-09-06'
+  method: probed
 accessModel:
-  pricing: freemium
-  onboarding: unknown
+  pricing: free
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Freemium
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free, no registration, anonymous access
+  confidence: high
   source:
   - plans
-  generated: '2026-07-22'
-  method: derived
-position: Consuming
+  - https://www.eac.gov/jsonapi
+  generated: '2026-09-06'
+  method: probed
+position: Producing
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/election-assistance-commission.png
 tags:
+- Federal-Government
+- Elections
+- Voting
+- Open Data
+- Voting-Systems
+- Certification
+- Government-Data
+- JSON-API
+- Public-Records
+tags_raw:
+- Federal Government
+- Elections
+- Voting
+- Open Data
+- Voting Systems
+- Certification
+- Government Data
+- JSON API
+- Public Records
+created: '2024-12-03'
+modified: '2026-09-06'
+url: https://raw.githubusercontent.com/api-evangelist/election-assistance-commission/refs/heads/main/apis.yml
+specificationVersion: '0.23'
+apis:
+- aid: election-assistance-commission:eac
+  name: EAC Content JSON:API
+  description: 'A live, anonymous, read-only JSON:API 1.0 surface served by the EAC''s own Drupal
+    10 web platform at https://www.eac.gov/jsonapi. The EAC does not document, advertise or link to
+    it from any developer page, and it has no developer portal — but the surface is real: probed 2026-09-06,
+    the resource index returned HTTP 200 with 216 entity--bundle link relations, 210 of which answered
+    with application/vnd.api+json and 86 of which returned substantive records. It carries the machine
+    form of the EAC''s regulatory estate — 117 voting systems in the Testing and Certification Program,
+    8 accredited Voting System Test Laboratories, 20 registered manufacturers, 5 VVSG testing standards,
+    275 Engineering Change Orders, 27 Notices of Clarification, 155 NVRA state pages, 113 state election
+    information records, 56 per-state registration and voting records, HAVA Election Security and
+    state grant financials, and 561 Clearinghouse Award entries. It is read-only by site configuration:
+    every write verb returns HTTP 405 "JSON:API is configured to accept only read operations". No
+    key, no account, no OAuth. The OpenAPI description in this repository was DERIVED BY API EVANGELIST
+    from those live probes; the EAC publishes none.'
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  tags:
   - Federal-Government
   - Elections
   - Voting
+  - Voting-Systems
+  - Certification
   - Open Data
-tags_raw:
+  - JSON-API
+  tags_raw:
   - Federal Government
   - Elections
   - Voting
+  - Voting Systems
+  - Certification
   - Open Data
-created: '2024-12-03'
-modified: '2026-04-28'
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/election-assistance-commission/refs/heads/main/apis.yml
-specificationVersion: '0.23'
-apis:
-  - aid: election-assistance-commission:eac
-    name: Election Assistance Commission
-    description: >-
-      Public-facing presence of the U.S. Election Assistance Commission. The
-      EAC publishes Election Administration and Voting Survey (EAVS)
-      datasets, codebooks, voluntary voting system guidelines, voter list
-      maintenance studies, and accessibility reports. Machine-readable
-      access is currently limited to dataset downloads and an RSS news feed
-      rather than a REST API.
-    humanURL: https://www.eac.gov
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    tags:
-      - Federal-Government
-      - Elections
-      - Voting
-      - Open Data
-    tags_raw:
-      - Federal Government
-      - Elections
-      - Voting
-      - Open Data
-    properties:
-      - type: Documentation
-        url: https://www.eac.gov
-      - type: ResearchAndData
-        url: https://www.eac.gov/research-and-data
-      - type: RSS
-        url: https://www.eac.gov/rss.xml
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
-common:
-  - type: DomainSecurity
-    url: security/election-assistance-commission-domain-security.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/u-s-election-assistance-commission
-  - name: EAC Website
-    url: https://www.eac.gov
-    type: Website
-  - name: EAC Research and Data
+  - JSON API
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-jsonapi-openapi.yml
+  - type: Overlay
+    url: overlays/election-assistance-commission-jsonapi-overlay.yaml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
     url: https://www.eac.gov/research-and-data
-    type: ResearchAndData
-  - name: Election Administration and Voting Survey
-    url: https://www.eac.gov/research-and-data/studies-and-reports
-    type: Datasets
-  - name: Voluntary Voting System Guidelines
-    url: https://www.eac.gov/voting-equipment/voluntary-voting-system-guidelines
-    type: Standards
-  - name: EAC News RSS Feed
-    url: https://www.eac.gov/rss.xml
-    type: RSS
-  - name: EAC Contact
-    url: https://www.eac.gov/contact_us
-    type: Contact
+- aid: election-assistance-commission:data-catalog
+  name: EAC Open Data Catalog
+  description: 'The EAC''s federal open-data inventory, served at https://www.eac.gov/data.json and
+    declaring conformance to the Project Open Data / DCAT-US v1.1 schema in the document itself. Probed
+    2026-09-06: HTTP 200, 11 datasets, chiefly the Election Administration and Voting Survey (EAVS)
+    series from 2012 through 2024 plus EAC research reports. This is where the EAVS microdata lives
+    — it is NOT carried by the JSON:API surface, whose EAVS-named resource types return empty collections.
+    The catalog is not linked from any EAC developer or data page and is not referenced from a /.well-known/api-catalog;
+    it is discoverable only by knowing the federal /data.json convention.'
+  humanURL: https://www.eac.gov/research-and-data/studies-and-reports
+  baseURL: https://www.eac.gov
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  tags:
+  - Federal-Government
+  - Elections
+  - Open Data
+  - Datasets
+  - EAVS
+  tags_raw:
+  - Federal Government
+  - Elections
+  - Open Data
+  - Datasets
+  - EAVS
+  properties:
+  - type: Datasets
+    url: datasets/election-assistance-commission-datasets.yml
+  - type: X-DataCatalog
+    url: https://www.eac.gov/data.json
+  - type: Documentation
+    url: https://www.eac.gov/research-and-data/eavs-faqs
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+common:
+- name: EAC Website
+  url: https://www.eac.gov
+  type: Website
+- name: EAC Research and Data
+  url: https://www.eac.gov/research-and-data
+  type: ResearchAndData
+- name: EAC Research and Data
+  url: https://www.eac.gov/research-and-data
+  type: Documentation
+- name: Election Administration and Voting Survey
+  url: https://www.eac.gov/research-and-data/studies-and-reports
+  type: Datasets
+- name: Voluntary Voting System Guidelines
+  url: https://www.eac.gov/voting-equipment/voluntary-voting-system-guidelines
+  type: Standards
+- name: EAC News RSS Feed
+  url: https://www.eac.gov/rss.xml
+  type: RSS
+- name: EAC News
+  url: https://www.eac.gov/news
+  type: Newsroom
+- name: EAC Blogs
+  url: https://www.eac.gov/blogs
+  type: Blog
+- name: Contact the EAC
+  url: https://www.eac.gov/contact
+  type: Contact
+- name: Contact the EAC
+  url: https://www.eac.gov/contact
+  type: Support
+- name: EAC on GitHub
+  url: https://github.com/eacgov
+  type: GitHubOrganization
+- name: EAC Privacy Statement
+  url: https://www.eac.gov/main/privacy-statement
+  type: PrivacyPolicy
+- name: EAC Accessibility Statement
+  url: https://www.eac.gov/accessibility-statement
+  type: Accessibility
+- name: Freedom of Information Act (FOIA)
+  url: https://www.eac.gov/foia/freedom-information-act-foia
+  type: FOIA
+- name: EAC Vulnerability Disclosure Policy
+  url: https://www.eac.gov/vulnerability-disclosure-policy
+  type: Security
+- type: VulnerabilityDisclosure
+  url: security/election-assistance-commission-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/election-assistance-commission-domain-security.yml
+- type: X-WellKnownProbe
+  url: well-known/election-assistance-commission-well-known.yml
+- type: Packages
+  url: packages/election-assistance-commission-packages.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/u-s-election-assistance-commission
+x-enrichment:
+  date: '2026-09-06'
+  status: enriched
+  artifacts_added: 28
+  pass: local-v3

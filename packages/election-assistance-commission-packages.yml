@@ -1,0 +1,78 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  npm registry search, pypi.org, rubygems.org, crates.io, packagist.org, and the EAC's GitHub
+  organisation (https://github.com/eacgov), all queried 2026-09-06
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: >-
+  The EAC publishes no client library, SDK or CLI in any package registry, and none would be
+  expected: it publishes no developer programme and does not advertise the JSON:API surface
+  that a client library would wrap. An honest zero, recorded with the searches that establish it.
+package_count: 0
+official_package_count: 0
+packages: []
+registries_searched:
+  - registry: npm
+    endpoint: https://registry.npmjs.org/-/v1/search
+    queries: ['election assistance commission', 'eac.gov', 'eavs']
+    result: >-
+      No first-party package. Query "eac.gov" and "eavs" returned zero results; the
+      "election assistance commission" query returned only unrelated third-party packages.
+  - registry: PyPI
+    endpoint: https://pypi.org/pypi/<name>/json
+    queries: [eac, eavs, eac-api, election-assistance-commission]
+    result: >-
+      `eavs`, `eac-api` and `election-assistance-commission` return HTTP 404. `eac` returns
+      HTTP 200 but is a NAME COLLISION — "Enhanced Autocorrelation" by Yeison Cardona, an
+      unrelated signal-processing library. Not the EAC.
+  - registry: RubyGems
+    endpoint: https://rubygems.org/api/v1/gems/<name>.json
+    queries: [eac]
+    result: >-
+      HTTP 200 but a NAME COLLISION — a gem for reading EAC-CPF (Encoded Archival Context)
+      archival description files, homepage github.com/ultrasaurus/eac. Not the EAC.
+  - registry: crates.io
+    queries: ['eac.gov']
+    result: 0 crates.
+  - registry: Packagist
+    queries: ['eac.gov']
+    result: 0 packages.
+  - registry: pkg.go.dev / Maven Central / NuGet
+    result: Not searched — no evidence of any EAC software distribution pointing at these ecosystems.
+github:
+  organisation: https://github.com/eacgov
+  http_status: 200
+  public_repos: 3
+  repositories:
+    - name: vote-gov-drupal
+      url: https://github.com/eacgov/vote-gov-drupal
+      language: PHP
+      fork: true
+      last_pushed: '2025-05-22'
+      note: The Drupal application for vote.gov. A site, not a client library.
+    - name: vote-gov-nvrf-app
+      url: https://github.com/eacgov/vote-gov-nvrf-app
+      language: JavaScript
+      fork: false
+      last_pushed: '2025-09-18'
+      note: >-
+        The National Voter Registration Form application for vote.gov. The only non-fork
+        first-party repository the EAC publishes, and the most recently maintained. It is an
+        end-user web application, not an SDK, and it is not distributed through any registry.
+    - name: vote-gov-tf
+      url: https://github.com/eacgov/vote-gov-tf
+      language: HCL
+      fork: true
+      last_pushed: '2025-05-22'
+      note: Terraform configuration for vote.gov infrastructure.
+  finding: >-
+    The EAC does operate a public GitHub organisation, and it is not linked from www.eac.gov
+    anywhere this pass could find. None of the three repositories relates to the JSON:API
+    surface at www.eac.gov/jsonapi or to the open-data catalog.
+no_sdk_pointer_emitted: >-
+  No `SDKs` pointer is wired into apis.yml from this file. There is no SDK, official or
+  otherwise, and a pointer would assert one exists.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

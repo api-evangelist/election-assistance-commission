@@ -1,0 +1,110 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live error responses observed against https://www.eac.gov/jsonapi on 2026-09-06, saved
+  verbatim in examples/; and openapi/election-assistance-commission-jsonapi-openapi.yml
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+format: jsonapi-errors
+rfc9457: false
+envelope:
+  media_type: application/vnd.api+json
+  shape: '{ "jsonapi": {...}, "errors": [ { "title", "status", "detail", "links": { "via", "info" } } ] }'
+  stable: true
+  note: >-
+    A single, typed, machine-parseable envelope is used across every JSON error observed.
+    `status` is a STRING, not an integer — a detail that breaks naive comparisons. `links.info`
+    points at the RFC section defining the status code, and `links.via` echoes the request URL.
+  caveat: >-
+    NOT every non-2xx on this host is a JSON:API error document. An unknown resource type
+    (e.g. /jsonapi/node/does_not_exist) and an unhealthy backend both return HTML.
+problem_types:
+  - id: bad-request-invalid-filter
+    status: 400
+    title: Bad Request
+    detail_observed: 'Invalid nested filtering. The field `nope`, given in the path `nope`, does not exist.'
+    cause: A filter names a field that does not exist on the resource type.
+    remediation: >-
+      Fetch one resource object first and read `attributes` and `relationships` for the exact
+      Drupal machine names, then filter on those. Field names are snake_case and usually
+      prefixed `field_`.
+    observed: true
+    evidence: examples/election-assistance-commission-error-400-example.json
+    parseable: true
+  - id: not-found-unknown-uuid
+    status: 404
+    title: Not Found
+    detail_observed: >-
+      The "entity" parameter was not converted for the path
+      "/jsonapi/node/voting_system/{entity}" (route name: "jsonapi.node--voting_system.individual")
+    cause: The UUID in an individual-resource path does not resolve in that collection.
+    remediation: Re-read the id from a collection response; ids are UUIDs, not the Drupal internal nid.
+    observed: true
+    parseable: true
+  - id: not-found-unknown-resource-type
+    status: 404
+    title: Not Found
+    cause: The path names an entity--bundle that the resource index does not advertise.
+    remediation: >-
+      Enumerate valid collections from GET https://www.eac.gov/jsonapi rather than constructing
+      paths. Do not attempt to JSON-parse this response.
+    observed: true
+    parseable: false
+    body: HTML Drupal 404 page, not a JSON:API error document
+  - id: method-not-allowed-read-only
+    status: 405
+    title: Method Not Allowed
+    detail_observed: >-
+      JSON:API is configured to accept only read operations. Site administrators can configure
+      this at https://www.eac.gov/admin/config/services/jsonapi.
+    cause: Any write verb (POST/PATCH/DELETE) against any collection.
+    remediation: >-
+      None available to a caller. The surface is read-only by site configuration; there is no
+      credential that changes this.
+    observed: true
+    evidence: examples/election-assistance-commission-error-405-readonly-example.json
+    parseable: true
+  - id: method-not-allowed-contact-message
+    status: 405
+    title: Method Not Allowed
+    cause: >-
+      GET on contact_message--feedback and contact_message--personal. Drupal contact messages
+      are write-only entities, so a read verb is rejected on a read-only surface — the two
+      configurations meet and neither verb works.
+    remediation: Do not enumerate contact_message resource types.
+    observed: true
+    parseable: true
+  - id: service-unavailable-technical-difficulties
+    status: 503
+    title: Technical Difficulties
+    cause: >-
+      Acquia/Varnish origin error. Observed persistently (three retries each, over several
+      hours) on node--event, user--user and token_custom--custom while the other 213 advertised
+      resource types answered normally — so on this surface a 503 can be a permanent property of
+      one collection rather than a transient outage.
+    remediation: >-
+      Retry with backoff, but do not retry indefinitely: treat a 503 that survives three attempts
+      on a single collection as that collection being unavailable, and continue with the rest.
+    observed: true
+    parseable: false
+    body: HTML "Technical Difficulties" page
+  - id: silent-authorization-omission
+    status: 200
+    title: (no error returned)
+    cause: >-
+      Drupal entity access denies the anonymous caller, and JSON:API reports it as a 200 with an
+      empty `data` array plus `meta.omitted` — not a 401 or 403.
+    remediation: >-
+      Check `meta.omitted` on every collection response. 63 of 216 advertised resource types
+      behave this way. An agent branching only on status codes will silently read "no records"
+      where the truth is "not permitted".
+    observed: true
+    parseable: true
+docs_error_reference:
+  published: false
+  note: >-
+    The EAC publishes no error reference. Every entry above was observed directly. The generic
+    contract is the JSON:API 1.0 error object at https://jsonapi.org/format/1.0/#errors.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

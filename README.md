@@ -64,51 +64,108 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The U.S. Election Assistance Commission (EAC) was established by the Help America Vote Act of 2002 (HAVA). The EAC is an independent, bipartisan commission charged with developing guidance to meet HAVA requirements, adopting voluntary voting system guidelines, and serving as a national clearinghouse of information on election administration. The EAC also accredits testing laboratories, certifies voting systems, and audits the use of HAVA funds. The EAC publishes the Election Administration and Voting Survey (EAVS) datasets and operates an RSS news feed; it does not publish a formal developer API.
+The U.S. Election Assistance Commission (EAC) is an independent, bipartisan federal commission
+established by the Help America Vote Act of 2002 (HAVA). It adopts the Voluntary Voting System
+Guidelines, accredits voting system test laboratories, certifies voting systems, administers and
+audits HAVA grant funds, and serves as the national clearinghouse for election administration
+information.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/election-assistance-commission/refs/heads/main/apis.yml)
+
+## What the EAC actually publishes
+
+The EAC has **no developer portal, no API documentation, no SDK, no API key and no sign-up**. It
+nonetheless serves two real, entirely anonymous machine surfaces that it does not advertise
+anywhere. Both were probed and verified on **2026-09-06**:
+
+| Surface | URL | Status | What it is |
+|---|---|---|---|
+| Content JSON:API | `https://www.eac.gov/jsonapi` | 200 | Live JSON:API 1.0 (Drupal 10). 216 resource types advertised, 210 answering `application/vnd.api+json`, 86 carrying real records. **Read-only by configuration.** |
+| Open data catalog | `https://www.eac.gov/data.json` | 200 | Project Open Data / DCAT-US v1.1 catalog, 11 datasets — the EAVS bulk files. |
+| News feed | `https://www.eac.gov/rss.xml` | 200 | RSS 2.0. |
+
+### What is in the JSON:API
+
+Record counts obtained by walking each collection to exhaustion on 2026-09-06:
+
+- **117** voting systems in the EAC Testing and Certification Program
+- **20** registered manufacturers, **8** accredited Voting System Test Laboratories
+- **5** Voluntary Voting System Guidelines testing standards
+- **275** Engineering Change Orders, **27** Notices of Clarification
+- **155** NVRA state pages (per state, per language), **113** state election information records
+- **56** per-state registration/voting records with deadlines and state lookup URLs
+- **56** HAVA Election Security grant records and **56** state grant financial records
+- **561** Clearinghouse (Clearie) Award entries, **495** articles, **378** FAQs
+- **19** controlled vocabularies totalling **315** terms
+
+### Things a consumer must know
+
+- **It is read-only.** Any write verb returns HTTP 405 — *"JSON:API is configured to accept only
+  read operations."* Nothing an agent does here can change anything.
+- **A 200 with an empty `data` array can mean "not permitted".** 63 of 216 resource types return
+  `meta.omitted` rather than a 401 or 403.
+- **EAVS microdata is NOT in the API.** It is in the bulk files listed at `/data.json`; the
+  EAVS-named resource types return empty collections.
+- **No versioning, deprecation policy, changelog or status page exists** for this surface.
+- **No `/.well-known/` document is served on any EAC host** — including `security.txt`, even
+  though the EAC publishes a complete
+  [vulnerability disclosure policy](https://www.eac.gov/vulnerability-disclosure-policy).
 
 ## Scope
 
 - **Type:** Contract
-- **Position:** Consumer
+- **Position:** Producing
 - **Access:** 3rd-Party
 
 ## Tags
 
-- Federal Government, Elections, Voting, Open Data
+Federal Government, Elections, Voting, Open Data, Voting Systems, Certification, Government Data,
+JSON API, Public Records
 
 ## Timestamps
 
 - **Created:** 2024-12-03
-- **Modified:** 2026-04-28
+- **Modified:** 2026-09-06
 
 ## APIs
 
-### Election Assistance Commission
+### EAC Content JSON:API
 
-Public-facing presence of the U.S. Election Assistance Commission. The EAC publishes Election Administration and Voting Survey (EAVS) datasets, codebooks, voluntary voting system guidelines, voter list maintenance studies, and accessibility reports. Machine-readable access is currently limited to dataset downloads and an RSS news feed rather than a REST API.
+**Human URL:** [https://www.eac.gov/research-and-data](https://www.eac.gov/research-and-data)
+**Base URL:** `https://www.eac.gov/jsonapi`
 
-**Human URL:** [https://www.eac.gov](https://www.eac.gov)
+The OpenAPI description in `openapi/` was **derived by API Evangelist from live probes** — the EAC
+publishes none. Every path in it corresponds to a `links` entry in the resource-type index and was
+individually requested anonymously; resource types that were empty, withheld or erroring are
+recorded under `x-probe.excluded` rather than described.
 
-#### Tags
+### EAC Open Data Catalog
 
-- Federal Government, Elections, Voting, Open Data
+**Human URL:** [https://www.eac.gov/research-and-data/studies-and-reports](https://www.eac.gov/research-and-data/studies-and-reports)
+**Base URL:** `https://www.eac.gov`
 
-#### Properties
+## Artifacts in this repository
 
-- [Documentation](https://www.eac.gov)
-- [Research and Data](https://www.eac.gov/research-and-data)
-- [RSS Feed](https://www.eac.gov/rss.xml)
-
-## Common Properties
-
-- [EAC Website](https://www.eac.gov)
-- [EAC Research and Data](https://www.eac.gov/research-and-data)
-- [Election Administration and Voting Survey](https://www.eac.gov/research-and-data/studies-and-reports)
-- [Voluntary Voting System Guidelines](https://www.eac.gov/voting-equipment/voluntary-voting-system-guidelines)
-- [EAC News RSS Feed](https://www.eac.gov/rss.xml)
-- [EAC Contact](https://www.eac.gov/contact_us)
+| Directory | Contents |
+|---|---|
+| `openapi/` | Derived OpenAPI 3.1 for the JSON:API surface — 173 GET operations |
+| `overlays/` | OpenAPI Overlay 1.0.0 carrying our consumer guidance separately from the probed facts |
+| `examples/` | Seven verbatim response bodies, including the 400 and 405 error documents |
+| `data-model/` | Derived entity graph for the certification programme |
+| `vocabulary/` | 19 EAC controlled vocabularies, 315 terms, harvested from the live API |
+| `datasets/` | The verbatim `data.json` catalog plus an assessment of it |
+| `conventions/` | Pagination, filtering, sorting, sparse fieldsets, includes, caching, error envelope |
+| `errors/` | Seven observed problem types, including the silent-authorization-omission trap |
+| `authentication/` | The (absent) auth model, with the probes that establish it |
+| `conformance/` | JSON:API 1.0 and Project Open Data v1.1 conformance, with evidence |
+| `lifecycle/` | Measured absence of versioning, deprecation, SLA and status page |
+| `rate-limits/`, `plans/` | Honest zeros — nothing published, nothing observed |
+| `packages/` | Registry searches, two name collisions ruled out, zero first-party SDKs |
+| `security/` | The EAC's real vulnerability disclosure policy, plus domain security probes |
+| `well-known/` | Five hosts × nine paths, all misses, recorded as data |
+| `skills/` | Three Agent Skills grounded in verified operationIds |
+| `mcp/` | A candidate tool list. **No MCP server exists** — the pointer is `X-MCPServerCandidate` |
+| `llms/` | A generated `llms.txt`; `https://www.eac.gov/llms.txt` returns 404 |
 
 ## Maintainers
 

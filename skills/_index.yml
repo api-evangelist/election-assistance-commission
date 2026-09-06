@@ -1,0 +1,43 @@
+generated: '2026-09-06'
+method: generated
+source: openapi/election-assistance-commission-jsonapi-openapi.yml
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+note: >-
+  Packaged Agent Skills for the EAC's undocumented JSON:API surface. Every operationId
+  referenced in these skills was verified to exist in the repository's OpenAPI description,
+  which was itself derived from live anonymous probes on 2026-09-06. The EAC publishes no
+  skills, no AGENTS.md and no agent guidance of any kind — searched 2026-09-06,
+  https://www.eac.gov/llms.txt returns 404.
+skills:
+  - name: eac-voting-system-certification-lookup
+    file: election-assistance-commission-voting-system-certification-lookup.md
+    summary: >-
+      Resolve a voting system's EAC certification status to its manufacturer, accredited test
+      lab, VVSG standard and certification/test-report documents.
+    operations: [getResourceIndex, listNodeVotingSystem, getNodeVotingSystem, listNodeManufacturer,
+      listNodeVotingSystemTestLab, listNodeTestingStandard, listTaxonomyTermCertificationStatuses,
+      listMediaDocument, listFileFile]
+  - name: eac-state-voter-information
+    file: election-assistance-commission-state-voter-information.md
+    summary: >-
+      Per-state registration deadlines, election dates, online-registration status, state lookup
+      URLs and the NVRA mail form by language.
+    operations: [listNodeRegisterVoteAndContactState, listNodeStateElectionInformation, listNodeNvra,
+      listTaxonomyTermStates, listTaxonomyTermOvrStatus, listTaxonomyTermNvraLanguages]
+  - name: eac-hava-grant-and-clearinghouse-research
+    file: election-assistance-commission-hava-grant-and-clearinghouse-research.md
+    summary: >-
+      HAVA grant awards and per-fiscal-year financial reporting, the 561 Clearinghouse Award
+      entries, and Engineering Change Order review latency.
+    operations: [listNodeEsFunds, listNodeStateFunds, listNodeClearinghouseAwards,
+      listNodeEngineeringChangeOrder, listMediaDocument, listFileFile, listTaxonomyTermStates]
+safety_posture:
+  write_surface: none
+  rationale: >-
+    The underlying API is read-only by site configuration — every write verb returns HTTP 405 —
+    and requires no credential. No skill here can take a consequential action, which is why none
+    of them carries a confirmation step.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

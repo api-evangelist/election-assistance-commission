@@ -1,0 +1,127 @@
+generated: '2026-09-06'
+method: probed
+source: live probes of https://www.eac.gov/jsonapi and https://www.eac.gov/data.json on 2026-09-06, plus
+  https://www.eac.gov/vulnerability-disclosure-policy and the repository's own domain-security probe
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: 'Two real, verifiable standards conformances, both established from the contract itself rather
+  than a marketing claim: JSON:API 1.0 on the content API, and Project Open Data v1.1 (DCAT-US) on the
+  bulk data catalog. Neither is advertised by the EAC anywhere a developer would look; both are declared
+  inside the documents themselves.'
+conformance:
+- id: json-api-1.0
+  name: JSON:API 1.0
+  conforms: true
+  evidence: https://www.eac.gov/jsonapi
+  detail: Every response document carries a top-level `jsonapi` member declaring {"version":"1.0","meta":{"links":{"self":{"href":"http://jsonapi.org/format/1.0/"}}}}
+    and is served as application/vnd.api+json. The document structure (data / included / links / meta
+    / errors, resource identifier objects, relationship objects) matches the specification, and the page[]/sort/filter/include/fields
+    query families all behave as specified. Verified across 210 resource types on 2026-09-06.
+  self_declared_in_contract: true
+  spec: https://jsonapi.org/format/1.0/
+- id: project-open-data-1.1
+  name: Project Open Data / DCAT-US Schema v1.1
+  conforms: true
+  evidence: https://www.eac.gov/data.json
+  detail: The catalog document declares "conformsTo":"https://project-open-data.cio.gov/v1.1/schema" and
+    "describedBy":"https://project-open-data.cio.gov/v1.1/schema/catalog.json", carries the DCAT-US @context
+    and @type, and lists 11 datasets with title, identifier, keyword and distribution members. This is
+    the OPEN Government Data Act / M-13-13 federal inventory format. Fetched HTTP 200 on 2026-09-06 and
+    saved verbatim to datasets/election-assistance-commission-data-json.json.
+  self_declared_in_contract: true
+  spec: https://resources.data.gov/resources/dcat-us/
+- id: rss-2.0
+  name: RSS 2.0
+  conforms: true
+  evidence: https://www.eac.gov/rss.xml
+  detail: HTTP 200, 39,301 bytes, `<rss>` root with the Dublin Core and content namespaces. The EAC's
+    only long-standing machine-readable publishing surface, and the one this repository's blogs/ corpus
+    is harvested from.
+- id: pagination
+  name: Standardised pagination
+  conforms: true
+  evidence: https://www.eac.gov/jsonapi/node/clearinghouse_awards?page[limit]=50
+  detail: JSON:API offset pagination with page[limit]/page[offset] and links.self/next/prev. Verified
+    by walking 561 Clearinghouse Award records to exhaustion on 2026-09-06. No total count is exposed.
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence: examples/election-assistance-commission-error-400-example.json
+  detail: Errors use the JSON:API 1.0 `errors[]` envelope, not application/problem+json. This is correct
+    behaviour for a JSON:API service — the two specifications are alternatives, not a ladder — and is
+    recorded false only so the distinction is explicit for a consumer.
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: https://www.eac.gov/.well-known/oauth-authorization-server
+  detail: HTTP 404. No authorization server, no scopes, no token endpoint. The API is anonymous.
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: https://www.eac.gov/.well-known/openid-configuration
+  detail: HTTP 404.
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: https://www.eac.gov/.well-known/security.txt
+  detail: HTTP 404 on every EAC host, even though the EAC publishes a complete vulnerability disclosure
+    policy at https://www.eac.gov/vulnerability-disclosure-policy. The policy exists; the machine-discoverable
+    pointer to it does not.
+- id: rfc9727-api-catalog
+  name: RFC 9727 /.well-known/api-catalog
+  conforms: false
+  evidence: https://www.eac.gov/.well-known/api-catalog
+  detail: HTTP 404 on every EAC host.
+- id: dnssec
+  name: DNSSEC
+  conforms: true
+  evidence: security/election-assistance-commission-domain-security.yml
+  detail: eac.gov is DNSSEC-signed, with CAA, SPF and a DMARC policy of reject.
+- id: graphql
+  name: GraphQL
+  conforms: false
+  evidence: https://www.eac.gov/graphql
+  detail: HTTP 404 on GET and on a POST introspection query ({__schema{queryType{name}}}). Drupal's GraphQL
+    module is not enabled. Probed 2026-09-06.
+- id: soap-wsdl
+  name: SOAP / WSDL
+  conforms: false
+  evidence: https://www.eac.gov/services?wsdl
+  detail: HTTP 404. https://www.eac.gov/?wsdl returns the ordinary HTML homepage (a soft 200, not a contract)
+    and https://www.eac.gov/jsonapi?wsdl returns HTTP 400 as an unrecognised query parameter. No SOAP
+    surface exists. Probed 2026-09-06.
+- id: asyncapi
+  name: AsyncAPI / event surface
+  conforms: false
+  evidence: https://www.eac.gov/jsonapi
+  detail: No AsyncAPI document, no webhook registration, no streaming endpoint and no event catalog. Change
+    detection is polling only, via ?sort=-changed or conditional requests on ETag/Last-Modified. Not penalised
+    — the EAC ships no event surface, and recording it as N/A is the honest result.
+domain_standard:
+  present: false
+  market: Election administration / voting system certification
+  assessment: 'REWARD-ONLY and honestly empty. The EAC is the body that WRITES the domain standard for
+    its market — the Voluntary Voting System Guidelines (VVSG 1.0, 1.1 and 2.0), the Testing and Certification
+    Program Manual and the VSTL Program Manual — and those are conformance regimes for voting equipment,
+    not interchange formats for an API. The relevant data-interchange standard in this market is NIST
+    SP 1500-100 (Election Results Common Data Format) and its siblings SP 1500-101/102/103, which the
+    EAC co-develops with NIST. The JSON:API surface does NOT emit CDF: node--voting_system and its relations
+    are Drupal content types, not NIST-1500-shaped election records. No domain-standard signature is claimed
+    here, because none is present in the contract.'
+  candidates_checked:
+  - id: nist-sp-1500-100-election-results-cdf
+    found_in_contract: false
+    note: No CDF namespace, schema reference or message type appears anywhere in the JSON:API surface.
+  - id: ocd-ids
+    name: Open Civic Data Identifiers
+    found_in_contract: false
+    note: State and jurisdiction records are keyed by Drupal UUID and a two-letter field_state_code, not
+      by OCD-ID. A consumer joining EAC state data to other civic datasets must map it by hand.
+compliance_certifications:
+  published: false
+  note: No SOC 2, ISO 27001 or FedRAMP attestation is published for eac.gov, and none would be expected
+    — the EAC is a federal agency operating under FISMA rather than a vendor selling assurance to customers.
+    No Compliance pointer is emitted, because there is no published certification to point at.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

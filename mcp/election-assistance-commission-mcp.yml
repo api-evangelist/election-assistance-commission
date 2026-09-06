@@ -1,0 +1,144 @@
+generated: '2026-09-06'
+method: derived
+source: >-
+  openapi/election-assistance-commission-jsonapi-openapi.yml, itself derived from live probes of
+  https://www.eac.gov/jsonapi on 2026-09-06
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+status: candidate
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: derived
+  note: >-
+    The EAC ships no MCP server, hosted or local. Searched on 2026-09-06: no reference to MCP,
+    Model Context Protocol or an agent endpoint anywhere on www.eac.gov; the EAC GitHub
+    organisation (github.com/eacgov) holds three repositories, all vote.gov Drupal/Terraform/React
+    and none MCP-related; no npm, PyPI or registry package is published under any EAC name. The
+    tools below are a CANDIDATE surface derived from the real REST operations, not a server that
+    exists. No endpoint URL is asserted, because none was found.
+search_evidence:
+  - url: https://www.eac.gov/llms.txt
+    status: 404
+  - url: https://www.eac.gov/.well-known/ai-plugin.json
+    status: 404
+  - url: https://www.eac.gov/.well-known/agent-card.json
+    status: 404
+  - url: https://api.github.com/orgs/eacgov/repos
+    status: 200
+    finding: 3 repositories — vote-gov-drupal, vote-gov-nvrf-app, vote-gov-tf. No MCP server.
+feasibility:
+  note: >-
+    A server is unusually easy to build here and unusually safe to expose. The underlying API is
+    anonymous, read-only by configuration (every write verb returns HTTP 405), free, and returns
+    JSON:API — so no credential plumbing, no consequence classification and no write guardrails are
+    needed. The whole surface is safe by construction.
+  auth_required: false
+  write_risk: none
+tools:
+  - name: eac_list_certified_voting_systems
+    description: >-
+      List voting systems in the EAC Testing and Certification Program, with certification,
+      withdrawal and termination dates, version and testing status. Optionally side-load the
+      manufacturer, test lab and certification status.
+    rest: [listNodeVotingSystem]
+    method: GET
+    path: /node/voting_system
+    inputs: [page_limit, page_offset, sort, filter, include, fields]
+    status: candidate
+  - name: eac_get_voting_system
+    description: Retrieve one certified voting system record by UUID.
+    rest: [getNodeVotingSystem]
+    method: GET
+    path: /node/voting_system/{id}
+    status: candidate
+  - name: eac_list_test_labs
+    description: List EAC-accredited Voting System Test Laboratories and their accreditation status.
+    rest: [listNodeVotingSystemTestLab]
+    method: GET
+    path: /node/voting_system_test_lab
+    status: candidate
+  - name: eac_list_manufacturers
+    description: List voting system manufacturers registered with the EAC.
+    rest: [listNodeManufacturer]
+    method: GET
+    path: /node/manufacturer
+    status: candidate
+  - name: eac_list_engineering_change_orders
+    description: >-
+      List Engineering Change Orders filed against certified systems, with manufacturer
+      submission, VSTL approval and EAC approval dates.
+    rest: [listNodeEngineeringChangeOrder]
+    method: GET
+    path: /node/engineering_change_order
+    status: candidate
+  - name: eac_list_notices_of_clarification
+    description: List EAC Notices of Clarification by topic, year and manual section.
+    rest: [listNodeNoticeOfClarification]
+    method: GET
+    path: /node/notice_of_clarification
+    status: candidate
+  - name: eac_list_testing_standards
+    description: List the Voluntary Voting System Guidelines versions systems are tested against.
+    rest: [listNodeTestingStandard]
+    method: GET
+    path: /node/testing_standard
+    status: candidate
+  - name: eac_get_state_voting_information
+    description: >-
+      Get a state's registration and voting information — upcoming election dates, registration
+      deadlines, and the state's own registration and polling-place lookup URLs.
+    rest: [listNodeRegisterVoteAndContactState]
+    method: GET
+    path: /node/register_vote_and_contact_state
+    status: candidate
+  - name: eac_list_state_election_information
+    description: List per-state election information records including online voter registration status.
+    rest: [listNodeStateElectionInformation]
+    method: GET
+    path: /node/state_election_information
+    status: candidate
+  - name: eac_list_nvra_state_pages
+    description: List National Voter Registration Act state pages by state and supported language.
+    rest: [listNodeNvra]
+    method: GET
+    path: /node/nvra
+    status: candidate
+  - name: eac_list_hava_grant_records
+    description: List HAVA Election Security and state grant financial records by state and fiscal year.
+    rest: [listNodeEsFunds, listNodeStateFunds]
+    method: GET
+    path: /node/es_funds, /node/state_funds
+    status: candidate
+  - name: eac_list_clearinghouse_awards
+    description: List Clearinghouse (Clearie) Award entries by year, category, award tier, office and state.
+    rest: [listNodeClearinghouseAwards]
+    method: GET
+    path: /node/clearinghouse_awards
+    status: candidate
+  - name: eac_search_articles
+    description: Search EAC news, blog posts and press releases by title, type and category.
+    rest: [listNodeArticle]
+    method: GET
+    path: /node/article
+    status: candidate
+  - name: eac_search_faqs
+    description: Search EAC frequently asked questions by category, section and tag.
+    rest: [listNodeFaqs]
+    method: GET
+    path: /node/faqs
+    status: candidate
+  - name: eac_list_datasets
+    description: >-
+      List the EAC's bulk open datasets, including the Election Administration and Voting Survey
+      series, from the Project Open Data catalog at https://www.eac.gov/data.json.
+    rest: []
+    source: https://www.eac.gov/data.json
+    status: candidate
+    note: Backed by the DCAT-US catalog, not by the JSON:API — EAVS microdata is not in the API.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

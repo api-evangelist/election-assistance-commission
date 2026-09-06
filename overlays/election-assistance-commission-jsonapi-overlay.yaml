@@ -1,0 +1,66 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements to the EAC JSON:API description
+  version: 1.0.0
+  x-generated: '2026-09-06'
+  x-method: generated
+  x-source: openapi/election-assistance-commission-jsonapi-openapi.yml
+  x-note: >-
+    This Overlay records the enhancements API Evangelist applies on top of the EAC JSON:API
+    description. It is unusual among this catalog's overlays in that the base document is ALSO
+    ours — the EAC publishes no OpenAPI — so the overlay's real purpose is to keep the
+    consumer-facing guidance (traps, provenance, agent guardrails) separable from the
+    probe-derived facts in the base document. Applying it does not mutate the base file.
+extends: openapi/election-assistance-commission-jsonapi-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-profile: https://apis.io/provider/election-assistance-commission
+      x-publisher-provided: false
+      x-consumer-warning: >-
+        The EAC does not document, announce or support this surface. It exists because Drupal's
+        JSON:API module is enabled on www.eac.gov. Nothing here is a commitment by the EAC, and
+        a routine CMS change could alter or remove any path without notice.
+  - target: $.info
+    update:
+      x-agent-guidance:
+        read_only: true
+        write_verbs_return: 405
+        safe_for_autonomous_use: true
+        rationale: >-
+          Every write verb returns HTTP 405 by site configuration, so no agent action against
+          this surface can have a side effect. Reversibility, idempotency and dry-run are all
+          `na` for that reason, not unaddressed.
+        check_meta_omitted: >-
+          A 200 with an empty data array plus meta.omitted means "not permitted", not "no
+          records". 63 of 216 resource types behave this way.
+        enumerate_from_index: >-
+          Start at GET / and read the links map. Constructing paths risks an HTML 404 that will
+          not parse as a JSON:API error document.
+  - target: $.servers
+    update:
+      - url: https://www.eac.gov/jsonapi
+        description: Production JSON:API entry point. Public, anonymous, read-only.
+        x-verified: '2026-09-06'
+        x-verified-status: 200
+  - target: $.info
+    update:
+      x-cross-references:
+        conventions: conventions/election-assistance-commission-conventions.yml
+        errors: errors/election-assistance-commission-problem-types.yml
+        data_model: data-model/election-assistance-commission-data-model.yml
+        vocabulary: vocabulary/election-assistance-commission-vocabulary.yml
+        conformance: conformance/election-assistance-commission-conformance.yml
+        authentication: authentication/election-assistance-commission-authentication.yml
+        lifecycle: lifecycle/election-assistance-commission-lifecycle.yml
+        rate_limits: rate-limits/election-assistance-commission-rate-limits.yml
+        bulk_data: datasets/election-assistance-commission-datasets.yml
+  - target: $.info
+    update:
+      x-not-in-this-api:
+        - name: Election Administration and Voting Survey (EAVS) microdata
+          where: https://www.eac.gov/data.json
+          note: >-
+            The single most requested EAC dataset is distributed as bulk CSV/Excel/SPSS/Stata/SAS
+            files catalogued in the Project Open Data document, not through this API. Agents
+            asked for EAVS numbers must go there.

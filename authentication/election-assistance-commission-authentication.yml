@@ -1,0 +1,70 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live anonymous probes of https://www.eac.gov/jsonapi on 2026-09-06, plus
+  openapi/election-assistance-commission-jsonapi-openapi.yml
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+docs: null
+summary: >-
+  The EAC's JSON:API surface requires no authentication of any kind. Every read was
+  performed anonymously with no header, key, cookie or token, and returned HTTP 200
+  with application/vnd.api+json. There is no sign-up, no key issuance, no OAuth
+  authorization server and no developer account — because there is no developer
+  programme. This is the simplest possible auth posture and, for a read-only public
+  records API, the correct one.
+schemes: []
+security_requirement: []
+model:
+  anonymous_read: true
+  credentialed_read: not-offered
+  write: not-offered
+  note: >-
+    Drupal's JSON:API module on this site is configured read-only. An anonymous
+    POST /jsonapi/node/article returned HTTP 405 "JSON:API is configured to accept only
+    read operations." No credential exists that would unlock a write path for a public
+    caller, so authentication is not merely optional — there is nothing to authenticate for.
+authorization_visible_in_responses:
+  mechanism: Drupal entity access, applied silently per resource type
+  signal: meta.omitted
+  detail: >-
+    63 of the 216 advertised resource types return HTTP 200 with an empty data array and a
+    meta.omitted block reading "Some resources have been omitted because of insufficient
+    authorisation". These are configuration and administrative entities (views, field
+    definitions, user roles, webform definitions) plus three content types the EAC keeps
+    non-public (node--person, node--slideshow_slide, node--state_payment_requirements).
+    A caller sees a 200 and an empty collection, not a 401 or 403 — worth knowing, because
+    an agent that branches on status codes will read "no records" where the truth is
+    "not permitted".
+probes:
+  - url: https://www.eac.gov/jsonapi
+    method: GET
+    credentials: none
+    status: 200
+  - url: https://www.eac.gov/jsonapi/node/voting_system?page[limit]=1
+    method: GET
+    credentials: none
+    status: 200
+  - url: https://www.eac.gov/jsonapi/node/article
+    method: POST
+    credentials: none
+    status: 405
+  - url: https://www.eac.gov/.well-known/openid-configuration
+    method: GET
+    credentials: none
+    status: 404
+  - url: https://www.eac.gov/.well-known/oauth-authorization-server
+    method: GET
+    credentials: none
+    status: 404
+  - url: https://www.eac.gov/.well-known/oauth-protected-resource
+    method: GET
+    credentials: none
+    status: 404
+transport_security:
+  https_enforced: true
+  tls_version: TLSv1.3
+  see: security/election-assistance-commission-domain-security.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

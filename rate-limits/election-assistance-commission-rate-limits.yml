@@ -3,89 +3,82 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Election Assistance Commission
 providerId: election-assistance-commission
+generated: '2026-09-06'
+method: probed
+source: >-
+  response headers observed on live anonymous requests to https://www.eac.gov/jsonapi and
+  https://www.eac.gov/data.json on 2026-09-06, plus a search of www.eac.gov for any published
+  usage policy
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-06'
 tags:
   - Federal Government
   - Elections
   - Voting
   - Open Data
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Election Assistance Commission API surface.
-  Captures per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold
-  values to be replaced with published provider limits.
+description: >-
+  The EAC publishes no rate limits and returns no rate-limit headers. Over roughly 300
+  anonymous requests on 2026-09-06 — a full 216-resource-type sweep plus complete pagination
+  walks of fourteen collections — not one response carried X-RateLimit-*, RateLimit-* or
+  Retry-After, and no request was throttled or rejected. An honest zero: nothing is documented,
+  and nothing was observed.
+limit_count: 0
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+  observed: []
+  note: >-
+    No rate-limit header family appeared on any response. An agent has no runtime signal to
+    back off on and must self-pace.
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Election Assistance Commission
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Election Assistance Commission
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Election Assistance Commission
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Election Assistance Commission
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Election Assistance Commission
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  throttled: null
+  observed:
+    - code: 200
+      note: Normal response, application/vnd.api+json.
+    - code: 400
+      note: Invalid filter.
+    - code: 404
+      note: Unknown UUID (JSON:API error) or unknown resource type (HTML page).
+    - code: 405
+      note: Any write verb — the surface is read-only by configuration.
+    - code: 503
+      note: >-
+        Acquia/Varnish "Technical Difficulties" HTML page. Observed persistently on three
+        specific collections (node--event, user--user, token_custom--custom) across retries
+        spanning hours, so on this host a 503 is more often a broken collection than a
+        throttle. Do not read it as rate limiting.
+edge:
+  cdn: Cloudflare
+  cache: Varnish
+  note: >-
+    Requests transit Cloudflare and Varnish (cf-ray, via: varnish, x-cache headers observed).
+    Neither publishes a documented limit here, but an edge policy could throttle an aggressive
+    caller without any header explaining why. cache-control on JSON:API responses is
+    max-age=31536000, public, so a well-behaved consumer using ETag/If-None-Match will
+    generate very little origin load.
+policies: []
+published_usage_policy:
+  exists: false
+  probed:
+    - url: https://www.eac.gov/robots.txt
+      status: 200
+      finding: >-
+        Standard Drupal robots.txt. Does NOT disallow /jsonapi or /data.json; disallows
+        /core/, /profiles/, /admin/, /search/ and the user account paths. No Crawl-delay
+        directive is set.
+    - url: https://www.eac.gov/llms.txt
+      status: 404
+      finding: No AI/agent usage guidance published.
+supersedes: >-
+  This file previously contained a five-entry free/professional/enterprise rate-limit scaffold
+  written by the 2026-05-04 bulk sweep (method: generated) with invented per-minute and
+  per-month quotas and an X-RateLimit-* header set the EAC does not emit. Replaced here by the
+  measured result.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,172 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live probes of https://www.eac.gov/jsonapi on 2026-09-06; the JSON:API 1.0
+  specification (https://jsonapi.org/format/1.0/) that the surface declares in every
+  response; and openapi/election-assistance-commission-jsonapi-openapi.yml
+provider: Election Assistance Commission
+providerId: election-assistance-commission
+summary: >-
+  Cross-cutting runtime semantics of the EAC JSON:API. Almost nothing here is an EAC
+  decision — the surface is Drupal core's JSON:API module, so its conventions are the
+  JSON:API 1.0 specification's conventions, which is the good news: an agent that already
+  speaks JSON:API needs no EAC-specific connector. The EAC publishes none of this itself.
+auth:
+  style: none
+  detail: Anonymous read. See authentication/election-assistance-commission-authentication.yml.
+media_type:
+  request: application/vnd.api+json
+  response: application/vnd.api+json
+  observed: true
+  note: Every 200 and every JSON error observed on 2026-09-06 carried content-type application/vnd.api+json.
+idempotency:
+  coverage: none
+  applicable: false
+  reason: >-
+    There is no mutating surface to protect. Drupal's JSON:API is configured read-only on
+    this site; an anonymous POST returned HTTP 405 "JSON:API is configured to accept only
+    read operations." GET is idempotent by HTTP semantics. No Idempotency-Key header is
+    documented, offered or needed.
+  evidence:
+    - url: https://www.eac.gov/jsonapi/node/article
+      method: POST
+      status: 405
+reversibility:
+  grade: na
+  applicable: false
+  reason: >-
+    Read-only API. There is no write, no create, no update and no delete, therefore no
+    action an agent takes against this surface can need taking back. Recorded as `na`
+    rather than absent so it leaves the denominator instead of scoring a zero the EAC
+    could not have avoided.
+  write_surfaces: []
+  evidence:
+    - url: https://www.eac.gov/jsonapi/node/article
+      method: POST
+      status: 405
+      detail: JSON:API is configured to accept only read operations.
+dry_run_mode:
+  supported: na
+  reason: Read-only API; every call is already side-effect free.
+pagination:
+  style: offset
+  spec: JSON:API 1.0 page[] family, Drupal implementation
+  params:
+    limit: page[limit]
+    offset: page[offset]
+  max_page_size: 50
+  max_page_size_note: >-
+    Drupal JSON:API caps page[limit] at 50 and silently clamps larger values. Verified by
+    walking node--clearinghouse_awards to 561 records in 50-record pages on 2026-09-06.
+  response_fields:
+    - links.self
+    - links.next
+    - links.prev
+  cursor: false
+  total_count: false
+  total_count_note: >-
+    No total count is returned. `meta.count` is absent from every collection document
+    observed. A caller who needs a total must walk links.next to exhaustion — which is how
+    every count recorded in this repository was obtained.
+  guidance: Follow links.next rather than computing page[offset] yourself.
+filtering:
+  supported: true
+  shorthand: filter[<field>]=<value>
+  long_form: filter[<label>][path]=<field>&filter[<label>][operator]=<op>&filter[<label>][value]=<value>
+  operators_verified:
+    - CONTAINS
+  verified_example: >-
+    GET /jsonapi/node/page?filter[t][path]=title&filter[t][operator]=CONTAINS&filter[t][value]=Privacy
+    returned the EAC Privacy Statement node on 2026-09-06.
+  unknown_field_behaviour:
+    status: 400
+    detail: 'Invalid nested filtering. The field `nope`, given in the path `nope`, does not exist.'
+sorting:
+  supported: true
+  param: sort
+  syntax: comma-separated field names; a leading `-` sorts descending
+  verified_example: GET /jsonapi/node/voting_system?sort=-field_certification_date -> HTTP 200
+sparse_fieldsets:
+  supported: true
+  param: fields[<resource-type>]=<comma-separated fields>
+  verified_example: >-
+    fields[node--voting_system_test_lab]=title,field_city,field_file_date returned exactly
+    those attributes on 2026-09-06 — the mechanism this repository used to capture a test-lab
+    example without pulling named staff contact fields.
+relationship_expansion:
+  supported: true
+  param: include
+  syntax: comma-separated relationship paths, dot-nested for deep includes
+  response_field: included
+  verified_example: >-
+    include=field_manufacturer,field_testing_lab,field_certification_status on
+    /jsonapi/node/voting_system returned node--manufacturer, node--voting_system_test_lab and
+    taxonomy_term--certification_statuses objects in `included` on 2026-09-06.
+error_envelope:
+  format: JSON:API 1.0 errors array
+  rfc9457: false
+  shape:
+    errors:
+      - title: human-readable summary, e.g. "Bad Request"
+        status: HTTP status as a string, e.g. "400"
+        detail: specific explanation
+        links:
+          via: {href: the request URL}
+          info: {href: the RFC section defining the status}
+  stable: true
+  caveat: >-
+    An unknown RESOURCE TYPE (as opposed to an unknown UUID) falls through to the Drupal site
+    404 and returns an HTML page, not a JSON:API error document. Agents must not assume every
+    non-2xx on this host is parseable as JSON.
+  see: errors/election-assistance-commission-problem-types.yml
+versioning:
+  api_version_in_path: false
+  api_version_in_header: false
+  declared_version: >-
+    Every response carries jsonapi.version "1.0" — that is the JSON:API SPECIFICATION version,
+    not an EAC API version.
+  published_policy: false
+  note: >-
+    The EAC publishes no versioning policy, no deprecation policy and no changelog for this
+    surface. The resource model is whatever the Drupal content model happens to be on the day
+    you call it; a content-type rename would break callers with no notice. See
+    lifecycle/election-assistance-commission-lifecycle.yml.
+rate_limit_signalling:
+  headers_returned: []
+  documented_limits: false
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header appeared on any response observed on
+    2026-09-06. See rate-limits/election-assistance-commission-rate-limits.yml.
+caching:
+  headers_observed:
+    - 'cache-control: max-age=31536000, public'
+    - etag
+    - last-modified
+    - 'vary: Cookie'
+    - x-drupal-cache
+    - x-drupal-dynamic-cache
+    - 'cf-cache-status: DYNAMIC'
+  conditional_requests: supported via ETag / Last-Modified
+  note: >-
+    The one-year max-age is aggressive for a records API whose certification data changes.
+    Callers who need current certification status should send If-None-Match rather than trust
+    a cached copy.
+tracing:
+  request_id_header: x-request-id
+  note: Returned on every response; quote it when reporting a problem to the EAC.
+platform_headers_observed:
+  - 'x-generator: Drupal 10 (https://www.drupal.org)'
+  - 'server: cloudflare'
+  - 'via: varnish'
+  - 'x-ah-environment: prod'
+  - 'x-content-type-options: nosniff'
+  - 'x-frame-options: SAMEORIGIN'
+cross_links:
+  errors: errors/election-assistance-commission-problem-types.yml
+  lifecycle: lifecycle/election-assistance-commission-lifecycle.yml
+  authentication: authentication/election-assistance-commission-authentication.yml
+  rate_limits: rate-limits/election-assistance-commission-rate-limits.yml
+  conformance: conformance/election-assistance-commission-conformance.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
