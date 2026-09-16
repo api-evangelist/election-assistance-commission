@@ -44,11 +44,11 @@ tags:
 - Elections
 - Voting
 - Open Data
-- Voting-Systems
+- Voting Systems
 - Certification
-- Government-Data
-- JSON-API
-- Public-Records
+- Government Data
+- JSON:API
+- Public Records
 tags_raw:
 - Federal Government
 - Elections
@@ -64,82 +64,16 @@ modified: '2026-09-06'
 url: https://raw.githubusercontent.com/api-evangelist/election-assistance-commission/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
-- aid: election-assistance-commission:eac
-  name: EAC Content JSON:API
-  description: 'A live, anonymous, read-only JSON:API 1.0 surface served by the EAC''s own Drupal
-    10 web platform at https://www.eac.gov/jsonapi. The EAC does not document, advertise or link to
-    it from any developer page, and it has no developer portal — but the surface is real: probed 2026-09-06,
-    the resource index returned HTTP 200 with 216 entity--bundle link relations, 210 of which answered
-    with application/vnd.api+json and 86 of which returned substantive records. It carries the machine
-    form of the EAC''s regulatory estate — 117 voting systems in the Testing and Certification Program,
-    8 accredited Voting System Test Laboratories, 20 registered manufacturers, 5 VVSG testing standards,
-    275 Engineering Change Orders, 27 Notices of Clarification, 155 NVRA state pages, 113 state election
-    information records, 56 per-state registration and voting records, HAVA Election Security and
-    state grant financials, and 561 Clearinghouse Award entries. It is read-only by site configuration:
-    every write verb returns HTTP 405 "JSON:API is configured to accept only read operations". No
-    key, no account, no OAuth. The OpenAPI description in this repository was DERIVED BY API EVANGELIST
-    from those live probes; the EAC publishes none.'
-  humanURL: https://www.eac.gov/research-and-data
-  baseURL: https://www.eac.gov/jsonapi
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  tags:
-  - Federal-Government
-  - Elections
-  - Voting
-  - Voting-Systems
-  - Certification
-  - Open Data
-  - JSON-API
-  tags_raw:
-  - Federal Government
-  - Elections
-  - Voting
-  - Voting Systems
-  - Certification
-  - Open Data
-  - JSON API
-  properties:
-  - type: OpenAPI
-    url: openapi/election-assistance-commission-jsonapi-openapi.yml
-  - type: Overlay
-    url: overlays/election-assistance-commission-jsonapi-overlay.yaml
-  - type: Examples
-    url: examples/_index.yml
-  - type: DataModel
-    url: data-model/election-assistance-commission-data-model.yml
-  - type: Vocabulary
-    url: vocabulary/election-assistance-commission-vocabulary.yml
-  - type: Authentication
-    url: authentication/election-assistance-commission-authentication.yml
-  - type: Conventions
-    url: conventions/election-assistance-commission-conventions.yml
-  - type: ErrorCatalog
-    url: errors/election-assistance-commission-problem-types.yml
-  - type: Conformance
-    url: conformance/election-assistance-commission-conformance.yml
-  - type: Lifecycle
-    url: lifecycle/election-assistance-commission-lifecycle.yml
-  - type: RateLimits
-    url: rate-limits/election-assistance-commission-rate-limits.yml
-  - type: Plans
-    url: plans/election-assistance-commission-plans-pricing.yml
-  - type: AgentSkill
-    url: skills/_index.yml
-  - type: X-MCPServerCandidate
-    url: mcp/election-assistance-commission-mcp.yml
-  - type: LLMsTxt
-    url: llms/election-assistance-commission-llms.txt
-  - type: ResearchAndData
-    url: https://www.eac.gov/research-and-data
 - aid: election-assistance-commission:data-catalog
   name: EAC Open Data Catalog
-  description: 'The EAC''s federal open-data inventory, served at https://www.eac.gov/data.json and
-    declaring conformance to the Project Open Data / DCAT-US v1.1 schema in the document itself. Probed
-    2026-09-06: HTTP 200, 11 datasets, chiefly the Election Administration and Voting Survey (EAVS)
-    series from 2012 through 2024 plus EAC research reports. This is where the EAVS microdata lives
-    — it is NOT carried by the JSON:API surface, whose EAVS-named resource types return empty collections.
-    The catalog is not linked from any EAC developer or data page and is not referenced from a /.well-known/api-catalog;
-    it is discoverable only by knowing the federal /data.json convention.'
+  description: >-
+    The EAC's federal open-data inventory, served at https://www.eac.gov/data.json and declaring conformance
+    to the Project Open Data / DCAT-US v1.1 schema in the document itself. Probed 2026-09-06: HTTP 200,
+    11 datasets, chiefly the Election Administration and Voting Survey (EAVS) series from 2012 through
+    2024 plus EAC research reports. This is where the EAVS microdata lives — it is NOT carried by the
+    JSON:API surface, whose EAVS-named resource types return empty collections. The catalog is not linked
+    from any EAC developer or data page and is not referenced from a /.well-known/api-catalog; it is discoverable
+    only by knowing the federal /data.json convention.
   humanURL: https://www.eac.gov/research-and-data/studies-and-reports
   baseURL: https://www.eac.gov
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
@@ -162,10 +96,523 @@ apis:
     url: https://www.eac.gov/data.json
   - type: Documentation
     url: https://www.eac.gov/research-and-data/eavs-faqs
+- aid: election-assistance-commission:election-assistance-commission-block-api
+  name: Election Assistance Commission Block API
+  description: Theme block placements.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - block
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-block-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-block-content-api
+  name: Election Assistance Commission Block Content API
+  description: Reusable content blocks.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - block_content
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-block-content-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-contact-form-api
+  name: Election Assistance Commission Contact Form API
+  description: Contact form definitions.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - contact_form
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-contact-form-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-date-format-api
+  name: Election Assistance Commission Date Format API
+  description: Site date format configuration.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - date_format
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-date-format-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-file-api
+  name: Election Assistance Commission File API
+  description: File entities backing media items.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - file
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-file-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-media-api
+  name: Election Assistance Commission Media API
+  description: >-
+    Media entities — documents (PDF reports, certifications, test reports), images and remote video.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - media
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-media-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-media-type-api
+  name: Election Assistance Commission Media Type API
+  description: Media bundle definitions.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - media_type
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-media-type-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-menu-api
+  name: Election Assistance Commission Menu API
+  description: Site menus.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - menu
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-menu-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-node-api
+  name: Election Assistance Commission Node API
+  description: >-
+    Content nodes — the EAC's substantive records (voting systems, manufacturers, test labs, NVRA, grants,
+    news, FAQs).
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - node
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-node-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-node-type-api
+  name: Election Assistance Commission Node Type API
+  description: Node bundle definitions.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - node_type
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-node-type-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-paragraph-api
+  name: Election Assistance Commission Paragraph API
+  description: Layout paragraph components composing EAC landing pages.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - paragraph
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-paragraph-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-paragraphs-type-api
+  name: Election Assistance Commission Paragraphs Type API
+  description: Paragraph bundle definitions.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - paragraphs_type
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-paragraphs-type-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-search-page-api
+  name: Election Assistance Commission Search Page API
+  description: Search page configuration.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - search_page
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-search-page-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
+- aid: election-assistance-commission:election-assistance-commission-taxonomy-term-api
+  name: Election Assistance Commission Taxonomy Term API
+  description: >-
+    Controlled vocabularies the EAC maintains — states, certification statuses, manufacturer types, test
+    lab statuses, document and news categories.
+  humanURL: https://www.eac.gov/research-and-data
+  baseURL: https://www.eac.gov/jsonapi
+  tags:
+  - taxonomy_term
+  properties:
+  - type: OpenAPI
+    url: openapi/election-assistance-commission-taxonomy-term-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/election-assistance-commission-data-model.yml
+  - type: Vocabulary
+    url: vocabulary/election-assistance-commission-vocabulary.yml
+  - type: Authentication
+    url: authentication/election-assistance-commission-authentication.yml
+  - type: Conventions
+    url: conventions/election-assistance-commission-conventions.yml
+  - type: ErrorCatalog
+    url: errors/election-assistance-commission-problem-types.yml
+  - type: Conformance
+    url: conformance/election-assistance-commission-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/election-assistance-commission-lifecycle.yml
+  - type: RateLimits
+    url: rate-limits/election-assistance-commission-rate-limits.yml
+  - type: Plans
+    url: plans/election-assistance-commission-plans-pricing.yml
+  - type: X-MCPServerCandidate
+    url: mcp/election-assistance-commission-mcp.yml
+  - type: LLMsTxt
+    url: llms/election-assistance-commission-llms.txt
+  - type: ResearchAndData
+    url: https://www.eac.gov/research-and-data
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: Overlay
+  url: overlays/election-assistance-commission-jsonapi-overlay.yaml
+- type: AgentSkill
+  url: skills/_index.yml
 - name: EAC Website
   url: https://www.eac.gov
   type: Website
