@@ -102,6 +102,8 @@ apis:
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
   tags:
+  - Block
+  tags_raw:
   - block
   properties:
   - type: OpenAPI
@@ -137,7 +139,8 @@ apis:
   description: Reusable content blocks.
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
-  tags:
+  tags: []
+  tags_raw:
   - block_content
   properties:
   - type: OpenAPI
@@ -173,7 +176,8 @@ apis:
   description: Contact form definitions.
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
-  tags:
+  tags: []
+  tags_raw:
   - contact_form
   properties:
   - type: OpenAPI
@@ -209,7 +213,8 @@ apis:
   description: Site date format configuration.
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
-  tags:
+  tags: []
+  tags_raw:
   - date_format
   properties:
   - type: OpenAPI
@@ -246,6 +251,8 @@ apis:
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
   tags:
+  - File
+  tags_raw:
   - file
   properties:
   - type: OpenAPI
@@ -283,6 +290,8 @@ apis:
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
   tags:
+  - Media
+  tags_raw:
   - media
   properties:
   - type: OpenAPI
@@ -318,7 +327,8 @@ apis:
   description: Media bundle definitions.
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
-  tags:
+  tags: []
+  tags_raw:
   - media_type
   properties:
   - type: OpenAPI
@@ -355,6 +365,8 @@ apis:
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
   tags:
+  - Menus
+  tags_raw:
   - menu
   properties:
   - type: OpenAPI
@@ -393,6 +405,8 @@ apis:
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
   tags:
+  - Node
+  tags_raw:
   - node
   properties:
   - type: OpenAPI
@@ -429,6 +443,8 @@ apis:
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
   tags:
+  - NodeType
+  tags_raw:
   - node_type
   properties:
   - type: OpenAPI
@@ -500,7 +516,8 @@ apis:
   description: Paragraph bundle definitions.
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
-  tags:
+  tags: []
+  tags_raw:
   - paragraphs_type
   properties:
   - type: OpenAPI
@@ -536,7 +553,8 @@ apis:
   description: Search page configuration.
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
-  tags:
+  tags: []
+  tags_raw:
   - search_page
   properties:
   - type: OpenAPI
@@ -575,6 +593,8 @@ apis:
   humanURL: https://www.eac.gov/research-and-data
   baseURL: https://www.eac.gov/jsonapi
   tags:
+  - Taxonomy Term
+  tags_raw:
   - taxonomy_term
   properties:
   - type: OpenAPI
