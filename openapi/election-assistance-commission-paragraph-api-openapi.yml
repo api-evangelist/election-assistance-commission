@@ -1,0 +1,1372 @@
+openapi: 3.2.0
+info:
+  title: U.S.
+  version: '1.0'
+  summary: Anonymous, read-only JSON:API 1.0 over the EAC's public content estate at www.eac.gov — voting system certifications, test labs, manufacturers, NVRA state pages, HAVA grant financials and the Clearinghouse Awards.
+  description: The U.S.
+  contact:
+    name: U.S. Election Assistance Commission
+    url: https://www.eac.gov/contact
+  license:
+    name: U.S. Government Work — generally public domain under 17 U.S.C. 105
+    url: https://www.eac.gov/main/privacy-statement
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.eac.gov/jsonapi
+  x-derived-on: '2026-09-06'
+  x-publisher-provided: false
+servers:
+- url: https://www.eac.gov/jsonapi
+  description: Production JSON:API entry point. Public, anonymous, read-only.
+security: []
+tags:
+- name: Paragraph
+  description: Layout paragraph components composing EAC landing pages.
+paths:
+  /paragraph/accordion:
+    get:
+      operationId: listParagraphAccordion
+      summary: List paragraph--accordion resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/accordion?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/accordion/{id}:
+    get:
+      operationId: getParagraphAccordion
+      summary: Get one paragraph--accordion resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/accordion_item:
+    get:
+      operationId: listParagraphAccordionItem
+      summary: List paragraph--accordion_item resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/accordion_item?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/accordion_item/{id}:
+    get:
+      operationId: getParagraphAccordionItem
+      summary: Get one paragraph--accordion_item resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/block_embed:
+    get:
+      operationId: listParagraphBlockEmbed
+      summary: List paragraph--block_embed resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/block_embed?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/block_embed/{id}:
+    get:
+      operationId: getParagraphBlockEmbed
+      summary: Get one paragraph--block_embed resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/body:
+    get:
+      operationId: listParagraphBody
+      summary: List paragraph--body resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/body?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/body/{id}:
+    get:
+      operationId: getParagraphBody
+      summary: Get one paragraph--body resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/button:
+    get:
+      operationId: listParagraphButton
+      summary: List paragraph--button resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/button?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/button/{id}:
+    get:
+      operationId: getParagraphButton
+      summary: Get one paragraph--button resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/card:
+    get:
+      operationId: listParagraphCard
+      summary: List paragraph--card resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/card?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/card/{id}:
+    get:
+      operationId: getParagraphCard
+      summary: Get one paragraph--card resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/cards:
+    get:
+      operationId: listParagraphCards
+      summary: List paragraph--cards resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/cards?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/cards/{id}:
+    get:
+      operationId: getParagraphCards
+      summary: Get one paragraph--cards resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/column:
+    get:
+      operationId: listParagraphColumn
+      summary: List paragraph--column resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/column?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/column/{id}:
+    get:
+      operationId: getParagraphColumn
+      summary: Get one paragraph--column resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/cta:
+    get:
+      operationId: listParagraphCta
+      summary: List paragraph--cta resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/cta?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/cta/{id}:
+    get:
+      operationId: getParagraphCta
+      summary: Get one paragraph--cta resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/hero:
+    get:
+      operationId: listParagraphHero
+      summary: List paragraph--hero resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/hero?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/hero/{id}:
+    get:
+      operationId: getParagraphHero
+      summary: Get one paragraph--hero resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/icon_list:
+    get:
+      operationId: listParagraphIconList
+      summary: List paragraph--icon_list resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/icon_list?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/icon_list/{id}:
+    get:
+      operationId: getParagraphIconList
+      summary: Get one paragraph--icon_list resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/icon_list_item:
+    get:
+      operationId: listParagraphIconListItem
+      summary: List paragraph--icon_list_item resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/icon_list_item?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/icon_list_item/{id}:
+    get:
+      operationId: getParagraphIconListItem
+      summary: Get one paragraph--icon_list_item resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/link:
+    get:
+      operationId: listParagraphLink
+      summary: List paragraph--link resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/link?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/link/{id}:
+    get:
+      operationId: getParagraphLink
+      summary: Get one paragraph--link resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/link_list:
+    get:
+      operationId: listParagraphLinkList
+      summary: List paragraph--link_list resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/link_list?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/link_list/{id}:
+    get:
+      operationId: getParagraphLinkList
+      summary: Get one paragraph--link_list resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/multi_column:
+    get:
+      operationId: listParagraphMultiColumn
+      summary: List paragraph--multi_column resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/multi_column?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/multi_column/{id}:
+    get:
+      operationId: getParagraphMultiColumn
+      summary: Get one paragraph--multi_column resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/statistic:
+    get:
+      operationId: listParagraphStatistic
+      summary: List paragraph--statistic resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/statistic?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/statistic/{id}:
+    get:
+      operationId: getParagraphStatistic
+      summary: Get one paragraph--statistic resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /paragraph/statistics:
+    get:
+      operationId: listParagraphStatistics
+      summary: List paragraph--statistics resources
+      tags:
+      - Paragraph
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/paragraph/statistics?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /paragraph/statistics/{id}:
+    get:
+      operationId: getParagraphStatistics
+      summary: Get one paragraph--statistics resource by UUID
+      tags:
+      - Paragraph
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  schemas:
+    ErrorObject:
+      type: object
+      description: JSON:API error object as emitted by Drupal. Verified shapes observed 2026-09-06 for 400, 404 and 405.
+      properties:
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: string
+          example: '400'
+        detail:
+          type: string
+          example: Invalid nested filtering. The field `nope`, given in the path `nope`, does not exist.
+        links:
+          type: object
+          properties:
+            via:
+              $ref: '#/components/schemas/Link'
+            info:
+              $ref: '#/components/schemas/Link'
+    CollectionDocument:
+      type: object
+      required:
+      - jsonapi
+      - data
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiObject'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
+        meta:
+          type: object
+          description: Carries `omitted` when Drupal suppressed resources the anonymous caller may not read.
+          additionalProperties: true
+        links:
+          $ref: '#/components/schemas/Links'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        meta:
+          type: object
+          additionalProperties: true
+    ResourceObject:
+      type: object
+      required:
+      - type
+      - id
+      description: A JSON:API resource object. Attribute and relationship keys are Drupal field machine names and vary by bundle; see x-observed-fields on each path.
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+          format: uuid
+        links:
+          type: object
+          additionalProperties: true
+        attributes:
+          type: object
+          additionalProperties: true
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+    ErrorDocument:
+      type: object
+      required:
+      - jsonapi
+      - errors
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiObject'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+    Relationship:
+      type: object
+      properties:
+        data:
+          description: Resource identifier object, array of them, or null.
+        links:
+          type: object
+          additionalProperties: true
+    JsonApiObject:
+      type: object
+      properties:
+        version:
+          type: string
+          const: '1.0'
+        meta:
+          type: object
+          additionalProperties: true
+    IndividualDocument:
+      type: object
+      required:
+      - jsonapi
+      - data
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiObject'
+        data:
+          $ref: '#/components/schemas/ResourceObject'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
+        links:
+          $ref: '#/components/schemas/Links'
+    Links:
+      type: object
+      description: Pagination and self links. `next` / `prev` appear only when more pages exist.
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        next:
+          $ref: '#/components/schemas/Link'
+        prev:
+          $ref: '#/components/schemas/Link'
+      additionalProperties: true
+  parameters:
+    include:
+      name: include
+      in: query
+      required: false
+      description: Comma-separated relationship paths to side-load into `included`. Verified 2026-09-06 with `include=field_manufacturer,field_testing_lab,field_certification_status`.
+      schema:
+        type: string
+      example: field_manufacturer,field_testing_lab
+    fields:
+      name: fields
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      description: 'Sparse fieldsets, keyed by resource type: `fields[node--voting_system]=title,field_version`.'
+      schema:
+        type: object
+        additionalProperties:
+          type: string
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Comma-separated field list; prefix a field with `-` to sort descending. Verified 2026-09-06 with `sort=-field_certification_date`.
+      schema:
+        type: string
+      example: -field_certification_date
+    resourceId:
+      name: id
+      in: path
+      required: true
+      description: The resource object UUID.
+      schema:
+        type: string
+        format: uuid
+    pageLimit:
+      name: page[limit]
+      in: query
+      required: false
+      description: Maximum number of resource objects to return. Drupal JSON:API caps this at 50.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        default: 50
+    filter:
+      name: filter
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      description: JSON:API filter. Shorthand `filter[field]=value`, or the long form `filter[label][path]=title&filter[label][operator]=CONTAINS&filter[label][value]=Privacy`. Verified 2026-09-06. An unknown field returns HTTP 400 `Invalid nested filtering`.
+      schema:
+        type: object
+        additionalProperties: true
+    pageOffset:
+      name: page[offset]
+      in: query
+      required: false
+      description: Zero-based offset into the collection. Follow `links.next` rather than computing offsets.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    BadRequest:
+      description: Invalid query parameter — e.g. a filter naming a field that does not exist. Observed 2026-09-06.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - title: Bad Request
+              status: '400'
+              detail: Invalid nested filtering. The field `nope`, given in the path `nope`, does not exist.
+    MethodNotAllowed:
+      description: The EAC configures JSON:API for read operations only; every write verb returns 405. Observed 2026-09-06 on POST /node/article.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - title: Method Not Allowed
+              status: '405'
+              detail: JSON:API is configured to accept only read operations. Site administrators can configure this at https://www.eac.gov/admin/config/services/jsonapi.
+    NotFound:
+      description: No resource object with that UUID in this collection. Observed 2026-09-06.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - title: Not Found
+              status: '404'
+              detail: 'The "entity" parameter was not converted for the path "/jsonapi/node/voting_system/{entity}" (route name: "jsonapi.node--voting_system.individual")'
+    ServiceUnavailable:
+      description: Acquia/Varnish "Technical Difficulties" page (HTML, not JSON:API). Observed 2026-09-06 and persisting across three retries for node--event, user--user and token_custom--custom.
+      content:
+        text/html:
+          schema:
+            type: string
+x-provenance:
+  generated: '2026-09-06'
+  method: probed
+  source: https://www.eac.gov/jsonapi
+  author: API Evangelist
+x-probe:
+  fetched: '2026-09-06'
+  index:
+    url: https://www.eac.gov/jsonapi
+    http_status: 200
+    content_type: application/vnd.api+json
+    resource_types_advertised: 215
+  described: 86
+  excluded:
+    empty_collection:
+    - ai_file--ai_file
+    - ai_guardrail--ai_guardrail
+    - ai_guardrail_set--ai_guardrail_set
+    - ai_prompt--ai_prompt
+    - ai_prompt_type--ai_prompt_type
+    - comment--comment
+    - facets_summary--facets_summary
+    - feeds_feed--cares_grants
+    - feeds_feed--engineering_change_orders
+    - feeds_feed--register_vote_and_contact_state
+    - feeds_feed--state_requirement_payments
+    - feeds_subscription--feeds_subscription
+    - flagging--following
+    - key_config_override--key_config_override
+    - media--galleries
+    - media_bulk_config--media_bulk_config
+    - node--jurisdiction_data
+    - paragraph--eavs_data
+    - paragraph--poll_worker_information
+    - paragraph--voting_policies_information
+    - paragraph--voting_technology_information
+    - search_api_task--search_api_task
+    - taxonomy_term--ai_tones
+    - taxonomy_term--eavs_states
+    - taxonomy_term--galleries
+    - taxonomy_term--media_directories
+    - taxonomy_term--program_type
+    - taxonomy_term--quick_tips
+    - taxonomy_term--subscribers
+    - taxonomy_term--tags
+    - taxonomy_term--test
+    - taxonomy_term--uswds_classes
+    - vote--reaction_10_yes
+    - vote--reaction_20_somewhat
+    - vote--reaction_30_no
+    - vote--vote
+    - vote_result--vote_result
+    - webform_submission--2022_national_clearinghouse_awar
+    - webform_submission--2023_national_clearinghouse_awar
+    - webform_submission--bloggers_contact_form
+    - webform_submission--clearie_submission_form
+    - webform_submission--contact
+    - webform_submission--contact_us
+    - webform_submission--demo_webform
+    - webform_submission--e_alert
+    - webform_submission--faq
+    - webform_submission--sign_up_for_eac_updates
+    - webform_submission--sign_up_for_the_eac_newsletter
+    - webform_submission--sponsors_form
+    - webform_submission--staff_contact
+    - webform_submission--template_contact
+    - webform_submission--template_employee_evaluation
+    - webform_submission--template_feedback
+    - webform_submission--template_issue
+    - webform_submission--template_job_application
+    - webform_submission--template_job_seeker_profile
+    - webform_submission--template_registration
+    - webform_submission--template_session_evaluation
+    - webform_submission--template_subscribe
+    - webform_submission--template_user_profile
+    - webform_submission--vulnerability_disclosure_policy
+    omitted_insufficient_authorization:
+    - action--action
+    - base_field_override--base_field_override
+    - behavior_settings--behavior_settings
+    - block_content_type--block_content_type
+    - captcha_point--captcha_point
+    - comment_type--comment_type
+    - config_split--config_split
+    - configurable_language--configurable_language
+    - crop--focal_point
+    - crop_type--crop_type
+    - editor--editor
+    - embed_button--embed_button
+    - entity_browser--entity_browser
+    - entity_form_display--entity_form_display
+    - entity_form_mode--entity_form_mode
+    - entity_view_display--entity_view_display
+    - entity_view_mode--entity_view_mode
+    - facets_facet--facets_facet
+    - facets_facet_source--facets_facet_source
+    - feeds_feed--es_funds
+    - feeds_feed--notice_of_clarification
+    - feeds_feed_type--feeds_feed_type
+    - field_config--field_config
+    - field_storage_config--field_storage_config
+    - filter_format--filter_format
+    - flag--flag
+    - flexslider--flexslider
+    - google_tag_container--google_tag_container
+    - image_style--image_style
+    - imce_profile--imce_profile
+    - key--key
+    - language_content_settings--language_content_settings
+    - linkit_profile--linkit_profile
+    - media--archive
+    - menu_link_content--menu_link_content
+    - metatag_defaults--metatag_defaults
+    - node--person
+    - node--slideshow_slide
+    - node--state_payment_requirements
+    - path_alias--path_alias
+    - pathauto_pattern--pathauto_pattern
+    - rdf_mapping--rdf_mapping
+    - redirect--redirect
+    - responsive_image_style--responsive_image_style
+    - rest_resource_config--rest_resource_config
+    - search_api_index--search_api_index
+    - search_api_server--search_api_server
+    - shortcut--default
+    - shortcut_set--shortcut_set
+    - simple_sitemap--simple_sitemap
+    - simple_sitemap_type--simple_sitemap_type
+    - sitewide_alert--sitewide_alert
+    - slick--slick
+    - taxonomy_term--uswds_breakpoints
+    - taxonomy_vocabulary--taxonomy_vocabulary
+    - token_custom_type--token_custom_type
+    - tour--tour
+    - user_role--user_role
+    - view--view
+    - vote_type--vote_type
+    - webform--webform
+    - webform_options--webform_options
+    - workflow--workflow
+    non_200:
+      contact_message--feedback: 405
+      contact_message--personal: 405
+      node--event: 503
+      token_custom--custom: 503
+      user--user: 503
+  write_surface:
+    probe: POST https://www.eac.gov/jsonapi/node/article
+    http_status: 405
+    detail: JSON:API is configured to accept only read operations.
+  response_headers_observed:
+  - 'x-generator: Drupal 10'
+  - 'cache-control: max-age=31536000, public'
+  - etag
+  - last-modified
+  - x-drupal-cache
+  - x-request-id
+  - 'server: cloudflare'
+  - 'via: varnish'
+  rate_limit_headers_observed: []

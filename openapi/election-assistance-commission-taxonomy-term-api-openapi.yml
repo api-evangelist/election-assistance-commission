@@ -1,0 +1,2415 @@
+openapi: 3.2.0
+info:
+  title: U.S.
+  version: '1.0'
+  summary: Anonymous, read-only JSON:API 1.0 over the EAC's public content estate at www.eac.gov — voting system certifications, test labs, manufacturers, NVRA state pages, HAVA grant financials and the Clearinghouse Awards.
+  description: The U.S.
+  contact:
+    name: U.S. Election Assistance Commission
+    url: https://www.eac.gov/contact
+  license:
+    name: U.S. Government Work — generally public domain under 17 U.S.C. 105
+    url: https://www.eac.gov/main/privacy-statement
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.eac.gov/jsonapi
+  x-derived-on: '2026-09-06'
+  x-publisher-provided: false
+servers:
+- url: https://www.eac.gov/jsonapi
+  description: Production JSON:API entry point. Public, anonymous, read-only.
+security: []
+tags:
+- name: Taxonomy Term
+  description: Controlled vocabularies the EAC maintains — states, certification statuses, manufacturer types, test lab statuses, document and news categories.
+paths:
+  /taxonomy_term/article_type:
+    get:
+      operationId: listTaxonomyTermArticleType
+      summary: List taxonomy_term--article_type resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/article_type?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/article_type/{id}:
+    get:
+      operationId: getTaxonomyTermArticleType
+      summary: Get one taxonomy_term--article_type resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/blog_topics:
+    get:
+      operationId: listTaxonomyTermBlogTopics
+      summary: List taxonomy_term--blog_topics resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/blog_topics?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/blog_topics/{id}:
+    get:
+      operationId: getTaxonomyTermBlogTopics
+      summary: Get one taxonomy_term--blog_topics resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/certification_statuses:
+    get:
+      operationId: listTaxonomyTermCertificationStatuses
+      summary: List taxonomy_term--certification_statuses resources
+      tags:
+      - Taxonomy Term
+      description: 'Certification status vocabulary applied to voting systems.
+
+
+        Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/certification_statuses?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/certification_statuses/{id}:
+    get:
+      operationId: getTaxonomyTermCertificationStatuses
+      summary: Get one taxonomy_term--certification_statuses resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/ch_award:
+    get:
+      operationId: listTaxonomyTermChAward
+      summary: List taxonomy_term--ch_award resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/ch_award?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/ch_award/{id}:
+    get:
+      operationId: getTaxonomyTermChAward
+      summary: Get one taxonomy_term--ch_award resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/ch_category:
+    get:
+      operationId: listTaxonomyTermChCategory
+      summary: List taxonomy_term--ch_category resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/ch_category?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/ch_category/{id}:
+    get:
+      operationId: getTaxonomyTermChCategory
+      summary: Get one taxonomy_term--ch_category resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/ch_office:
+    get:
+      operationId: listTaxonomyTermChOffice
+      summary: List taxonomy_term--ch_office resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/ch_office?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/ch_office/{id}:
+    get:
+      operationId: getTaxonomyTermChOffice
+      summary: Get one taxonomy_term--ch_office resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/ch_state:
+    get:
+      operationId: listTaxonomyTermChState
+      summary: List taxonomy_term--ch_state resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/ch_state?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/ch_state/{id}:
+    get:
+      operationId: getTaxonomyTermChState
+      summary: Get one taxonomy_term--ch_state resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/competencies_wheel_categories:
+    get:
+      operationId: listTaxonomyTermCompetenciesWheelCategories
+      summary: List taxonomy_term--competencies_wheel_categories resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/competencies_wheel_categories?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/competencies_wheel_categories/{id}:
+    get:
+      operationId: getTaxonomyTermCompetenciesWheelCategories
+      summary: Get one taxonomy_term--competencies_wheel_categories resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/country:
+    get:
+      operationId: listTaxonomyTermCountry
+      summary: List taxonomy_term--country resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/country?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/country/{id}:
+    get:
+      operationId: getTaxonomyTermCountry
+      summary: Get one taxonomy_term--country resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/document_category:
+    get:
+      operationId: listTaxonomyTermDocumentCategory
+      summary: List taxonomy_term--document_category resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/document_category?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/document_category/{id}:
+    get:
+      operationId: getTaxonomyTermDocumentCategory
+      summary: Get one taxonomy_term--document_category resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/eac_grants_faq_test:
+    get:
+      operationId: listTaxonomyTermEacGrantsFaqTest
+      summary: List taxonomy_term--eac_grants_faq_test resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/eac_grants_faq_test?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/eac_grants_faq_test/{id}:
+    get:
+      operationId: getTaxonomyTermEacGrantsFaqTest
+      summary: Get one taxonomy_term--eac_grants_faq_test resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/event_categories:
+    get:
+      operationId: listTaxonomyTermEventCategories
+      summary: List taxonomy_term--event_categories resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/event_categories?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/event_categories/{id}:
+    get:
+      operationId: getTaxonomyTermEventCategories
+      summary: Get one taxonomy_term--event_categories resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/faq_categories:
+    get:
+      operationId: listTaxonomyTermFaqCategories
+      summary: List taxonomy_term--faq_categories resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/faq_categories?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/faq_categories/{id}:
+    get:
+      operationId: getTaxonomyTermFaqCategories
+      summary: Get one taxonomy_term--faq_categories resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/faq_section:
+    get:
+      operationId: listTaxonomyTermFaqSection
+      summary: List taxonomy_term--faq_section resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/faq_section?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/faq_section/{id}:
+    get:
+      operationId: getTaxonomyTermFaqSection
+      summary: Get one taxonomy_term--faq_section resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/faq_sub_categories:
+    get:
+      operationId: listTaxonomyTermFaqSubCategories
+      summary: List taxonomy_term--faq_sub_categories resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/faq_sub_categories?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/faq_sub_categories/{id}:
+    get:
+      operationId: getTaxonomyTermFaqSubCategories
+      summary: Get one taxonomy_term--faq_sub_categories resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/faq_tags:
+    get:
+      operationId: listTaxonomyTermFaqTags
+      summary: List taxonomy_term--faq_tags resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/faq_tags?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/faq_tags/{id}:
+    get:
+      operationId: getTaxonomyTermFaqTags
+      summary: Get one taxonomy_term--faq_tags resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/glossary_languages:
+    get:
+      operationId: listTaxonomyTermGlossaryLanguages
+      summary: List taxonomy_term--glossary_languages resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/glossary_languages?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/glossary_languages/{id}:
+    get:
+      operationId: getTaxonomyTermGlossaryLanguages
+      summary: Get one taxonomy_term--glossary_languages resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/keyword_categories:
+    get:
+      operationId: listTaxonomyTermKeywordCategories
+      summary: List taxonomy_term--keyword_categories resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/keyword_categories?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/keyword_categories/{id}:
+    get:
+      operationId: getTaxonomyTermKeywordCategories
+      summary: Get one taxonomy_term--keyword_categories resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/keywords:
+    get:
+      operationId: listTaxonomyTermKeywords
+      summary: List taxonomy_term--keywords resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/keywords?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/keywords/{id}:
+    get:
+      operationId: getTaxonomyTermKeywords
+      summary: Get one taxonomy_term--keywords resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/manufacturer_types:
+    get:
+      operationId: listTaxonomyTermManufacturerTypes
+      summary: List taxonomy_term--manufacturer_types resources
+      tags:
+      - Taxonomy Term
+      description: 'Manufacturer type vocabulary.
+
+
+        Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/manufacturer_types?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/manufacturer_types/{id}:
+    get:
+      operationId: getTaxonomyTermManufacturerTypes
+      summary: Get one taxonomy_term--manufacturer_types resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/media_category:
+    get:
+      operationId: listTaxonomyTermMediaCategory
+      summary: List taxonomy_term--media_category resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/media_category?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/media_category/{id}:
+    get:
+      operationId: getTaxonomyTermMediaCategory
+      summary: Get one taxonomy_term--media_category resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/news_category:
+    get:
+      operationId: listTaxonomyTermNewsCategory
+      summary: List taxonomy_term--news_category resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/news_category?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/news_category/{id}:
+    get:
+      operationId: getTaxonomyTermNewsCategory
+      summary: Get one taxonomy_term--news_category resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/nvra_languages:
+    get:
+      operationId: listTaxonomyTermNvraLanguages
+      summary: List taxonomy_term--nvra_languages resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/nvra_languages?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/nvra_languages/{id}:
+    get:
+      operationId: getTaxonomyTermNvraLanguages
+      summary: Get one taxonomy_term--nvra_languages resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/nvra_states:
+    get:
+      operationId: listTaxonomyTermNvraStates
+      summary: List taxonomy_term--nvra_states resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/nvra_states?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/nvra_states/{id}:
+    get:
+      operationId: getTaxonomyTermNvraStates
+      summary: Get one taxonomy_term--nvra_states resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/ovr_status:
+    get:
+      operationId: listTaxonomyTermOvrStatus
+      summary: List taxonomy_term--ovr_status resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/ovr_status?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/ovr_status/{id}:
+    get:
+      operationId: getTaxonomyTermOvrStatus
+      summary: Get one taxonomy_term--ovr_status resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/payment_years:
+    get:
+      operationId: listTaxonomyTermPaymentYears
+      summary: List taxonomy_term--payment_years resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/payment_years?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/payment_years/{id}:
+    get:
+      operationId: getTaxonomyTermPaymentYears
+      summary: Get one taxonomy_term--payment_years resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/person_type:
+    get:
+      operationId: listTaxonomyTermPersonType
+      summary: List taxonomy_term--person_type resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/person_type?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/person_type/{id}:
+    get:
+      operationId: getTaxonomyTermPersonType
+      summary: Get one taxonomy_term--person_type resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/resource_type:
+    get:
+      operationId: listTaxonomyTermResourceType
+      summary: List taxonomy_term--resource_type resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/resource_type?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/resource_type/{id}:
+    get:
+      operationId: getTaxonomyTermResourceType
+      summary: Get one taxonomy_term--resource_type resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/section:
+    get:
+      operationId: listTaxonomyTermSection
+      summary: List taxonomy_term--section resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/section?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/section/{id}:
+    get:
+      operationId: getTaxonomyTermSection
+      summary: Get one taxonomy_term--section resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/staff_departments:
+    get:
+      operationId: listTaxonomyTermStaffDepartments
+      summary: List taxonomy_term--staff_departments resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/staff_departments?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/staff_departments/{id}:
+    get:
+      operationId: getTaxonomyTermStaffDepartments
+      summary: Get one taxonomy_term--staff_departments resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/state_voter_options:
+    get:
+      operationId: listTaxonomyTermStateVoterOptions
+      summary: List taxonomy_term--state_voter_options resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/state_voter_options?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/state_voter_options/{id}:
+    get:
+      operationId: getTaxonomyTermStateVoterOptions
+      summary: Get one taxonomy_term--state_voter_options resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/states:
+    get:
+      operationId: listTaxonomyTermStates
+      summary: List taxonomy_term--states resources
+      tags:
+      - Taxonomy Term
+      description: 'The states and territories vocabulary, carrying the two-letter state code.
+
+
+        Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/states?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+      x-observed-fields:
+        attributes:
+        - changed
+        - default_langcode
+        - description
+        - drupal_internal__revision_id
+        - drupal_internal__tid
+        - field_state_code
+        - field_tax_hierarchical_depth
+        - field_tax_hierarchical_weight
+        - langcode
+        - metatag
+        - name
+        - path
+        - revision_created
+        - revision_translation_affected
+        - status
+        - weight
+        relationships:
+        - field_country
+        - parent
+        - revision_user
+        - vid
+  /taxonomy_term/states/{id}:
+    get:
+      operationId: getTaxonomyTermStates
+      summary: Get one taxonomy_term--states resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/test_lab_statuses:
+    get:
+      operationId: listTaxonomyTermTestLabStatuses
+      summary: List taxonomy_term--test_lab_statuses resources
+      tags:
+      - Taxonomy Term
+      description: 'Test laboratory accreditation status vocabulary.
+
+
+        Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/test_lab_statuses?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/test_lab_statuses/{id}:
+    get:
+      operationId: getTaxonomyTermTestLabStatuses
+      summary: Get one taxonomy_term--test_lab_statuses resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/video_category:
+    get:
+      operationId: listTaxonomyTermVideoCategory
+      summary: List taxonomy_term--video_category resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/video_category?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/video_category/{id}:
+    get:
+      operationId: getTaxonomyTermVideoCategory
+      summary: Get one taxonomy_term--video_category resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /taxonomy_term/voting_products:
+    get:
+      operationId: listTaxonomyTermVotingProducts
+      summary: List taxonomy_term--voting_products resources
+      tags:
+      - Taxonomy Term
+      description: 'Probed anonymously 2026-09-06: HTTP 200, `application/vnd.api+json`, at least one resource object returned.'
+      parameters:
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API collection document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CollectionDocument'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-probe:
+        url: https://www.eac.gov/jsonapi/taxonomy_term/voting_products?page[limit]=1
+        http_status: 200
+        content_type: application/vnd.api+json
+        fetched: '2026-09-06'
+  /taxonomy_term/voting_products/{id}:
+    get:
+      operationId: getTaxonomyTermVotingProducts
+      summary: Get one taxonomy_term--voting_products resource by UUID
+      tags:
+      - Taxonomy Term
+      description: Returns a single resource object. Individual reads were verified on 2026-09-06 against `node--voting_system`; the route exists for every collection above. An unknown UUID returns HTTP 404 with a JSON:API error document.
+      parameters:
+      - $ref: '#/components/parameters/resourceId'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: JSON:API individual document.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IndividualDocument'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  schemas:
+    ErrorObject:
+      type: object
+      description: JSON:API error object as emitted by Drupal. Verified shapes observed 2026-09-06 for 400, 404 and 405.
+      properties:
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: string
+          example: '400'
+        detail:
+          type: string
+          example: Invalid nested filtering. The field `nope`, given in the path `nope`, does not exist.
+        links:
+          type: object
+          properties:
+            via:
+              $ref: '#/components/schemas/Link'
+            info:
+              $ref: '#/components/schemas/Link'
+    CollectionDocument:
+      type: object
+      required:
+      - jsonapi
+      - data
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiObject'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
+        meta:
+          type: object
+          description: Carries `omitted` when Drupal suppressed resources the anonymous caller may not read.
+          additionalProperties: true
+        links:
+          $ref: '#/components/schemas/Links'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        meta:
+          type: object
+          additionalProperties: true
+    ResourceObject:
+      type: object
+      required:
+      - type
+      - id
+      description: A JSON:API resource object. Attribute and relationship keys are Drupal field machine names and vary by bundle; see x-observed-fields on each path.
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+          format: uuid
+        links:
+          type: object
+          additionalProperties: true
+        attributes:
+          type: object
+          additionalProperties: true
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
+    ErrorDocument:
+      type: object
+      required:
+      - jsonapi
+      - errors
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiObject'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+    Relationship:
+      type: object
+      properties:
+        data:
+          description: Resource identifier object, array of them, or null.
+        links:
+          type: object
+          additionalProperties: true
+    JsonApiObject:
+      type: object
+      properties:
+        version:
+          type: string
+          const: '1.0'
+        meta:
+          type: object
+          additionalProperties: true
+    IndividualDocument:
+      type: object
+      required:
+      - jsonapi
+      - data
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiObject'
+        data:
+          $ref: '#/components/schemas/ResourceObject'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
+        links:
+          $ref: '#/components/schemas/Links'
+    Links:
+      type: object
+      description: Pagination and self links. `next` / `prev` appear only when more pages exist.
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        next:
+          $ref: '#/components/schemas/Link'
+        prev:
+          $ref: '#/components/schemas/Link'
+      additionalProperties: true
+  parameters:
+    include:
+      name: include
+      in: query
+      required: false
+      description: Comma-separated relationship paths to side-load into `included`. Verified 2026-09-06 with `include=field_manufacturer,field_testing_lab,field_certification_status`.
+      schema:
+        type: string
+      example: field_manufacturer,field_testing_lab
+    fields:
+      name: fields
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      description: 'Sparse fieldsets, keyed by resource type: `fields[node--voting_system]=title,field_version`.'
+      schema:
+        type: object
+        additionalProperties:
+          type: string
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Comma-separated field list; prefix a field with `-` to sort descending. Verified 2026-09-06 with `sort=-field_certification_date`.
+      schema:
+        type: string
+      example: -field_certification_date
+    resourceId:
+      name: id
+      in: path
+      required: true
+      description: The resource object UUID.
+      schema:
+        type: string
+        format: uuid
+    pageLimit:
+      name: page[limit]
+      in: query
+      required: false
+      description: Maximum number of resource objects to return. Drupal JSON:API caps this at 50.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        default: 50
+    filter:
+      name: filter
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      description: JSON:API filter. Shorthand `filter[field]=value`, or the long form `filter[label][path]=title&filter[label][operator]=CONTAINS&filter[label][value]=Privacy`. Verified 2026-09-06. An unknown field returns HTTP 400 `Invalid nested filtering`.
+      schema:
+        type: object
+        additionalProperties: true
+    pageOffset:
+      name: page[offset]
+      in: query
+      required: false
+      description: Zero-based offset into the collection. Follow `links.next` rather than computing offsets.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    BadRequest:
+      description: Invalid query parameter — e.g. a filter naming a field that does not exist. Observed 2026-09-06.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - title: Bad Request
+              status: '400'
+              detail: Invalid nested filtering. The field `nope`, given in the path `nope`, does not exist.
+    MethodNotAllowed:
+      description: The EAC configures JSON:API for read operations only; every write verb returns 405. Observed 2026-09-06 on POST /node/article.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - title: Method Not Allowed
+              status: '405'
+              detail: JSON:API is configured to accept only read operations. Site administrators can configure this at https://www.eac.gov/admin/config/services/jsonapi.
+    NotFound:
+      description: No resource object with that UUID in this collection. Observed 2026-09-06.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - title: Not Found
+              status: '404'
+              detail: 'The "entity" parameter was not converted for the path "/jsonapi/node/voting_system/{entity}" (route name: "jsonapi.node--voting_system.individual")'
+    ServiceUnavailable:
+      description: Acquia/Varnish "Technical Difficulties" page (HTML, not JSON:API). Observed 2026-09-06 and persisting across three retries for node--event, user--user and token_custom--custom.
+      content:
+        text/html:
+          schema:
+            type: string
+x-provenance:
+  generated: '2026-09-06'
+  method: probed
+  source: https://www.eac.gov/jsonapi
+  author: API Evangelist
+x-probe:
+  fetched: '2026-09-06'
+  index:
+    url: https://www.eac.gov/jsonapi
+    http_status: 200
+    content_type: application/vnd.api+json
+    resource_types_advertised: 215
+  described: 86
+  excluded:
+    empty_collection:
+    - ai_file--ai_file
+    - ai_guardrail--ai_guardrail
+    - ai_guardrail_set--ai_guardrail_set
+    - ai_prompt--ai_prompt
+    - ai_prompt_type--ai_prompt_type
+    - comment--comment
+    - facets_summary--facets_summary
+    - feeds_feed--cares_grants
+    - feeds_feed--engineering_change_orders
+    - feeds_feed--register_vote_and_contact_state
+    - feeds_feed--state_requirement_payments
+    - feeds_subscription--feeds_subscription
+    - flagging--following
+    - key_config_override--key_config_override
+    - media--galleries
+    - media_bulk_config--media_bulk_config
+    - node--jurisdiction_data
+    - paragraph--eavs_data
+    - paragraph--poll_worker_information
+    - paragraph--voting_policies_information
+    - paragraph--voting_technology_information
+    - search_api_task--search_api_task
+    - taxonomy_term--ai_tones
+    - taxonomy_term--eavs_states
+    - taxonomy_term--galleries
+    - taxonomy_term--media_directories
+    - taxonomy_term--program_type
+    - taxonomy_term--quick_tips
+    - taxonomy_term--subscribers
+    - taxonomy_term--tags
+    - taxonomy_term--test
+    - taxonomy_term--uswds_classes
+    - vote--reaction_10_yes
+    - vote--reaction_20_somewhat
+    - vote--reaction_30_no
+    - vote--vote
+    - vote_result--vote_result
+    - webform_submission--2022_national_clearinghouse_awar
+    - webform_submission--2023_national_clearinghouse_awar
+    - webform_submission--bloggers_contact_form
+    - webform_submission--clearie_submission_form
+    - webform_submission--contact
+    - webform_submission--contact_us
+    - webform_submission--demo_webform
+    - webform_submission--e_alert
+    - webform_submission--faq
+    - webform_submission--sign_up_for_eac_updates
+    - webform_submission--sign_up_for_the_eac_newsletter
+    - webform_submission--sponsors_form
+    - webform_submission--staff_contact
+    - webform_submission--template_contact
+    - webform_submission--template_employee_evaluation
+    - webform_submission--template_feedback
+    - webform_submission--template_issue
+    - webform_submission--template_job_application
+    - webform_submission--template_job_seeker_profile
+    - webform_submission--template_registration
+    - webform_submission--template_session_evaluation
+    - webform_submission--template_subscribe
+    - webform_submission--template_user_profile
+    - webform_submission--vulnerability_disclosure_policy
+    omitted_insufficient_authorization:
+    - action--action
+    - base_field_override--base_field_override
+    - behavior_settings--behavior_settings
+    - block_content_type--block_content_type
+    - captcha_point--captcha_point
+    - comment_type--comment_type
+    - config_split--config_split
+    - configurable_language--configurable_language
+    - crop--focal_point
+    - crop_type--crop_type
+    - editor--editor
+    - embed_button--embed_button
+    - entity_browser--entity_browser
+    - entity_form_display--entity_form_display
+    - entity_form_mode--entity_form_mode
+    - entity_view_display--entity_view_display
+    - entity_view_mode--entity_view_mode
+    - facets_facet--facets_facet
+    - facets_facet_source--facets_facet_source
+    - feeds_feed--es_funds
+    - feeds_feed--notice_of_clarification
+    - feeds_feed_type--feeds_feed_type
+    - field_config--field_config
+    - field_storage_config--field_storage_config
+    - filter_format--filter_format
+    - flag--flag
+    - flexslider--flexslider
+    - google_tag_container--google_tag_container
+    - image_style--image_style
+    - imce_profile--imce_profile
+    - key--key
+    - language_content_settings--language_content_settings
+    - linkit_profile--linkit_profile
+    - media--archive
+    - menu_link_content--menu_link_content
+    - metatag_defaults--metatag_defaults
+    - node--person
+    - node--slideshow_slide
+    - node--state_payment_requirements
+    - path_alias--path_alias
+    - pathauto_pattern--pathauto_pattern
+    - rdf_mapping--rdf_mapping
+    - redirect--redirect
+    - responsive_image_style--responsive_image_style
+    - rest_resource_config--rest_resource_config
+    - search_api_index--search_api_index
+    - search_api_server--search_api_server
+    - shortcut--default
+    - shortcut_set--shortcut_set
+    - simple_sitemap--simple_sitemap
+    - simple_sitemap_type--simple_sitemap_type
+    - sitewide_alert--sitewide_alert
+    - slick--slick
+    - taxonomy_term--uswds_breakpoints
+    - taxonomy_vocabulary--taxonomy_vocabulary
+    - token_custom_type--token_custom_type
+    - tour--tour
+    - user_role--user_role
+    - view--view
+    - vote_type--vote_type
+    - webform--webform
+    - webform_options--webform_options
+    - workflow--workflow
+    non_200:
+      contact_message--feedback: 405
+      contact_message--personal: 405
+      node--event: 503
+      token_custom--custom: 503
+      user--user: 503
+  write_surface:
+    probe: POST https://www.eac.gov/jsonapi/node/article
+    http_status: 405
+    detail: JSON:API is configured to accept only read operations.
+  response_headers_observed:
+  - 'x-generator: Drupal 10'
+  - 'cache-control: max-age=31536000, public'
+  - etag
+  - last-modified
+  - x-drupal-cache
+  - x-request-id
+  - 'server: cloudflare'
+  - 'via: varnish'
+  rate_limit_headers_observed: []

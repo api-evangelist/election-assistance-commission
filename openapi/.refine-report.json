@@ -1,0 +1,46 @@
+{
+  "provider": "election-assistance-commission",
+  "sources": [
+    "_original/election-assistance-commission-jsonapi-openapi.yml"
+  ],
+  "outputs": [
+    "election-assistance-commission-block-api-openapi.yml",
+    "election-assistance-commission-block-content-api-openapi.yml",
+    "election-assistance-commission-contact-form-api-openapi.yml",
+    "election-assistance-commission-date-format-api-openapi.yml",
+    "election-assistance-commission-file-api-openapi.yml",
+    "election-assistance-commission-media-api-openapi.yml",
+    "election-assistance-commission-media-type-api-openapi.yml",
+    "election-assistance-commission-menu-api-openapi.yml",
+    "election-assistance-commission-node-api-openapi.yml",
+    "election-assistance-commission-node-type-api-openapi.yml",
+    "election-assistance-commission-paragraph-api-openapi.yml",
+    "election-assistance-commission-paragraphs-type-api-openapi.yml",
+    "election-assistance-commission-search-page-api-openapi.yml",
+    "election-assistance-commission-taxonomy-term-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "election-assistance-commission-jsonapi-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "election-assistance-commission-block-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-block-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-contact-form-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-date-format-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-file-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-media-type-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-menu-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-node-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-node-type-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-paragraph-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-paragraphs-type-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-search-page-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "election-assistance-commission-taxonomy-term-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}
