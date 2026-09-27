@@ -40,7 +40,7 @@ position: Producing
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/election-assistance-commission.png
 tags:
-- Federal-Government
+- Federal Government
 - Elections
 - Voting
 - Open Data
@@ -59,6 +59,7 @@ tags_raw:
 - Government Data
 - JSON API
 - Public Records
+- Federal-Government
 created: '2024-12-03'
 modified: '2026-09-06'
 url: https://raw.githubusercontent.com/api-evangelist/election-assistance-commission/refs/heads/main/apis.yml
@@ -75,10 +76,9 @@ apis:
     from any EAC developer or data page and is not referenced from a /.well-known/api-catalog; it is discoverable
     only by knowing the federal /data.json convention.
   humanURL: https://www.eac.gov/research-and-data/studies-and-reports
-  baseURL: https://www.eac.gov
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   tags:
-  - Federal-Government
+  - Federal Government
   - Elections
   - Open Data
   - Datasets
@@ -89,6 +89,7 @@ apis:
   - Open Data
   - Datasets
   - EAVS
+  - Federal-Government
   properties:
   - type: Datasets
     url: datasets/election-assistance-commission-datasets.yml
