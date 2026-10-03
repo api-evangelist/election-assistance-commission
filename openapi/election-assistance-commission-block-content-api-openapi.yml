@@ -247,19 +247,94 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
 components:
+  parameters:
+    fields:
+      name: fields
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      description: 'Sparse fieldsets, keyed by resource type: `fields[node--voting_system]=title,field_version`.'
+      schema:
+        type: object
+        additionalProperties:
+          type: string
+    include:
+      name: include
+      in: query
+      required: false
+      description: Comma-separated relationship paths to side-load into `included`. Verified 2026-09-06 with `include=field_manufacturer,field_testing_lab,field_certification_status`.
+      schema:
+        type: string
+      example: field_manufacturer,field_testing_lab
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Comma-separated field list; prefix a field with `-` to sort descending. Verified 2026-09-06 with `sort=-field_certification_date`.
+      schema:
+        type: string
+      example: -field_certification_date
+    pageOffset:
+      name: page[offset]
+      in: query
+      required: false
+      description: Zero-based offset into the collection. Follow `links.next` rather than computing offsets.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    filter:
+      name: filter
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      description: JSON:API filter. Shorthand `filter[field]=value`, or the long form `filter[label][path]=title&filter[label][operator]=CONTAINS&filter[label][value]=Privacy`. Verified 2026-09-06. An unknown field returns HTTP 400 `Invalid nested filtering`.
+      schema:
+        type: object
+        additionalProperties: true
+    resourceId:
+      name: id
+      in: path
+      required: true
+      description: The resource object UUID.
+      schema:
+        type: string
+        format: uuid
+    pageLimit:
+      name: page[limit]
+      in: query
+      required: false
+      description: Maximum number of resource objects to return. Drupal JSON:API caps this at 50.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        default: 50
   schemas:
-    ErrorDocument:
+    ResourceObject:
       type: object
       required:
-      - jsonapi
-      - errors
+      - type
+      - id
+      description: A JSON:API resource object. Attribute and relationship keys are Drupal field machine names and vary by bundle; see x-observed-fields on each path.
       properties:
-        jsonapi:
-          $ref: '#/components/schemas/JsonApiObject'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
+        type:
+          type: string
+        id:
+          type: string
+          format: uuid
+        links:
+          type: object
+          additionalProperties: true
+        attributes:
+          type: object
+          additionalProperties: true
+        relationships:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Relationship'
     IndividualDocument:
       type: object
       required:
@@ -298,15 +373,6 @@ components:
           additionalProperties: true
         links:
           $ref: '#/components/schemas/Links'
-    Link:
-      type: object
-      properties:
-        href:
-          type: string
-          format: uri
-        meta:
-          type: object
-          additionalProperties: true
     JsonApiObject:
       type: object
       properties:
@@ -314,47 +380,6 @@ components:
           type: string
           const: '1.0'
         meta:
-          type: object
-          additionalProperties: true
-    ResourceObject:
-      type: object
-      required:
-      - type
-      - id
-      description: A JSON:API resource object. Attribute and relationship keys are Drupal field machine names and vary by bundle; see x-observed-fields on each path.
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-          format: uuid
-        links:
-          type: object
-          additionalProperties: true
-        attributes:
-          type: object
-          additionalProperties: true
-        relationships:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Relationship'
-    Links:
-      type: object
-      description: Pagination and self links. `next` / `prev` appear only when more pages exist.
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        next:
-          $ref: '#/components/schemas/Link'
-        prev:
-          $ref: '#/components/schemas/Link'
-      additionalProperties: true
-    Relationship:
-      type: object
-      properties:
-        data:
-          description: Resource identifier object, array of them, or null.
-        links:
           type: object
           additionalProperties: true
     ErrorObject:
@@ -377,7 +402,64 @@ components:
               $ref: '#/components/schemas/Link'
             info:
               $ref: '#/components/schemas/Link'
+    Links:
+      type: object
+      description: Pagination and self links. `next` / `prev` appear only when more pages exist.
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        next:
+          $ref: '#/components/schemas/Link'
+        prev:
+          $ref: '#/components/schemas/Link'
+      additionalProperties: true
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        meta:
+          type: object
+          additionalProperties: true
+    Relationship:
+      type: object
+      properties:
+        data:
+          description: Resource identifier object, array of them, or null.
+        links:
+          type: object
+          additionalProperties: true
+    ErrorDocument:
+      type: object
+      required:
+      - jsonapi
+      - errors
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiObject'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
   responses:
+    MethodNotAllowed:
+      description: The EAC configures JSON:API for read operations only; every write verb returns 405. Observed 2026-09-06 on POST /node/article.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - title: Method Not Allowed
+              status: '405'
+              detail: JSON:API is configured to accept only read operations. Site administrators can configure this at https://www.eac.gov/admin/config/services/jsonapi.
+    ServiceUnavailable:
+      description: Acquia/Varnish "Technical Difficulties" page (HTML, not JSON:API). Observed 2026-09-06 and persisting across three retries for node--event, user--user and token_custom--custom.
+      content:
+        text/html:
+          schema:
+            type: string
     NotFound:
       description: No resource object with that UUID in this collection. Observed 2026-09-06.
       content:
@@ -400,88 +482,6 @@ components:
             - title: Bad Request
               status: '400'
               detail: Invalid nested filtering. The field `nope`, given in the path `nope`, does not exist.
-    MethodNotAllowed:
-      description: The EAC configures JSON:API for read operations only; every write verb returns 405. Observed 2026-09-06 on POST /node/article.
-      content:
-        application/vnd.api+json:
-          schema:
-            $ref: '#/components/schemas/ErrorDocument'
-          example:
-            errors:
-            - title: Method Not Allowed
-              status: '405'
-              detail: JSON:API is configured to accept only read operations. Site administrators can configure this at https://www.eac.gov/admin/config/services/jsonapi.
-    ServiceUnavailable:
-      description: Acquia/Varnish "Technical Difficulties" page (HTML, not JSON:API). Observed 2026-09-06 and persisting across three retries for node--event, user--user and token_custom--custom.
-      content:
-        text/html:
-          schema:
-            type: string
-  parameters:
-    pageLimit:
-      name: page[limit]
-      in: query
-      required: false
-      description: Maximum number of resource objects to return. Drupal JSON:API caps this at 50.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 50
-        default: 50
-    pageOffset:
-      name: page[offset]
-      in: query
-      required: false
-      description: Zero-based offset into the collection. Follow `links.next` rather than computing offsets.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    resourceId:
-      name: id
-      in: path
-      required: true
-      description: The resource object UUID.
-      schema:
-        type: string
-        format: uuid
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Comma-separated field list; prefix a field with `-` to sort descending. Verified 2026-09-06 with `sort=-field_certification_date`.
-      schema:
-        type: string
-      example: -field_certification_date
-    fields:
-      name: fields
-      in: query
-      required: false
-      style: deepObject
-      explode: true
-      description: 'Sparse fieldsets, keyed by resource type: `fields[node--voting_system]=title,field_version`.'
-      schema:
-        type: object
-        additionalProperties:
-          type: string
-    filter:
-      name: filter
-      in: query
-      required: false
-      style: deepObject
-      explode: true
-      description: JSON:API filter. Shorthand `filter[field]=value`, or the long form `filter[label][path]=title&filter[label][operator]=CONTAINS&filter[label][value]=Privacy`. Verified 2026-09-06. An unknown field returns HTTP 400 `Invalid nested filtering`.
-      schema:
-        type: object
-        additionalProperties: true
-    include:
-      name: include
-      in: query
-      required: false
-      description: Comma-separated relationship paths to side-load into `included`. Verified 2026-09-06 with `include=field_manufacturer,field_testing_lab,field_certification_status`.
-      schema:
-        type: string
-      example: field_manufacturer,field_testing_lab
 x-provenance:
   generated: '2026-09-06'
   method: probed
