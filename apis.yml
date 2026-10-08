@@ -630,6 +630,12 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: Plans
+  url: plans/election-assistance-commission-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/election-assistance-commission-rate-limits.yml
+- type: FinOps
+  url: finops/election-assistance-commission-finops.yml
 - type: Overlay
   url: overlays/election-assistance-commission-jsonapi-overlay.yaml
 - type: AgentSkill
