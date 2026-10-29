@@ -1,4 +1,4 @@
-# Election Assistance Commission (election-assistance-commission)
+# Election Assistance Commission
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,111 +64,147 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The U.S. Election Assistance Commission (EAC) is an independent, bipartisan federal commission
-established by the Help America Vote Act of 2002 (HAVA). It adopts the Voluntary Voting System
-Guidelines, accredits voting system test laboratories, certifies voting systems, administers and
-audits HAVA grant funds, and serves as the national clearinghouse for election administration
-information.
+The U.S. Election Assistance Commission (EAC) is an independent, bipartisan federal commission established by the Help America Vote Act of 2002 (HAVA). It adopts the Voluntary Voting System Guidelines, accredits voting system test laboratories, certifies voting systems, administers and audits HAVA grant funds, and is the national clearinghouse for election administration information. The EAC publishes no developer portal, no API documentation and no API key programme, but serves two real anonymous machine surfaces it does not advertise: a live read-only JSON:API 1.0 at https://www.eac.gov/jsonapi (Drupal 10, 216 resource types) carrying the certified voting system register, accredited test labs, manufacturers, Engineering Change Orders, Notices of Clarification, NVRA state pages, per-state registration deadlines, HAVA grant financials and 561 Clearinghouse Awards; and a Project Open Data v1.1 catalog at https://www.eac.gov/data.json listing the EAVS bulk datasets. Both verified.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/election-assistance-commission/refs/heads/main/apis.yml)
+**Areas:** Federal Government · Elections · Voting · Open Data · Voting Systems · Certification · Government Data · JSON:API · Public Records
 
-## What the EAC actually publishes
+## Election Assistance Commission on APIs.io
 
-The EAC has **no developer portal, no API documentation, no SDK, no API key and no sign-up**. It
-nonetheless serves two real, entirely anonymous machine surfaces that it does not advertise
-anywhere. Both were probed and verified on **2026-09-06**:
+Everything profiled for Election Assistance Commission is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/election-assistance-commission/](https://apis.io/providers/election-assistance-commission/)** — or go straight to one of the APIs or properties below.
 
-| Surface | URL | Status | What it is |
-|---|---|---|---|
-| Content JSON:API | `https://www.eac.gov/jsonapi` | 200 | Live JSON:API 1.0 (Drupal 10). 216 resource types advertised, 210 answering `application/vnd.api+json`, 86 carrying real records. **Read-only by configuration.** |
-| Open data catalog | `https://www.eac.gov/data.json` | 200 | Project Open Data / DCAT-US v1.1 catalog, 11 datasets — the EAVS bulk files. |
-| News feed | `https://www.eac.gov/rss.xml` | 200 | RSS 2.0. |
+### APIs (15)
 
-### What is in the JSON:API
+- [EAC Open Data Catalog](https://apis.io/apis/election-assistance-commission/data-catalog/) — The EAC's federal open-data inventory, served at https://www.eac.gov/data.json and declaring conformance to the Project Open Data / DCAT-US v1.1 schema in…
+- [Election Assistance Commission Block API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-block-api/) — Theme block placements.
+- [Election Assistance Commission Block Content API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-block-content-api/) — Reusable content blocks.
+- [Election Assistance Commission Contact Form API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-contact-form-api/) — Contact form definitions.
+- [Election Assistance Commission Date Format API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-date-format-api/) — Site date format configuration.
+- [Election Assistance Commission File API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-file-api/) — File entities backing media items.
+- [Election Assistance Commission Media API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-media-api/) — Media entities — documents (PDF reports, certifications, test reports), images and remote video.
+- [Election Assistance Commission Media Type API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-media-type-api/) — Media bundle definitions.
+- [Election Assistance Commission Menu API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-menu-api/) — Site menus.
+- [Election Assistance Commission Node API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-node-api/) — Content nodes — the EAC's substantive records (voting systems, manufacturers, test labs, NVRA, grants, news, FAQs).
+- [Election Assistance Commission Node Type API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-node-type-api/) — Node bundle definitions.
+- [Election Assistance Commission Paragraph API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-paragraph-api/) — Layout paragraph components composing EAC landing pages.
+- [Election Assistance Commission Paragraphs Type API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-paragraphs-type-api/) — Paragraph bundle definitions.
+- [Election Assistance Commission Search Page API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-search-page-api/) — Search page configuration.
+- [Election Assistance Commission Taxonomy Term API](https://apis.io/apis/election-assistance-commission/election-assistance-commission-taxonomy-term-api/) — Controlled vocabularies the EAC maintains — states, certification statuses, manufacturer types, test lab statuses, document and news categories.
 
-Record counts obtained by walking each collection to exhaustion on 2026-09-06:
+### Published properties
 
-- **117** voting systems in the EAC Testing and Certification Program
-- **20** registered manufacturers, **8** accredited Voting System Test Laboratories
-- **5** Voluntary Voting System Guidelines testing standards
-- **275** Engineering Change Orders, **27** Notices of Clarification
-- **155** NVRA state pages (per state, per language), **113** state election information records
-- **56** per-state registration/voting records with deadlines and state lookup URLs
-- **56** HAVA Election Security grant records and **56** state grant financial records
-- **561** Clearinghouse (Clearie) Award entries, **495** articles, **378** FAQs
-- **19** controlled vocabularies totalling **315** terms
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Things a consumer must know
+#### MCP servers (1)
 
-- **It is read-only.** Any write verb returns HTTP 405 — *"JSON:API is configured to accept only
-  read operations."* Nothing an agent does here can change anything.
-- **A 200 with an empty `data` array can mean "not permitted".** 63 of 216 resource types return
-  `meta.omitted` rather than a 401 or 403.
-- **EAVS microdata is NOT in the API.** It is in the bulk files listed at `/data.json`; the
-  EAVS-named resource types return empty collections.
-- **No versioning, deprecation policy, changelog or status page exists** for this surface.
-- **No `/.well-known/` document is served on any EAC host** — including `security.txt`, even
-  though the EAC publishes a complete
-  [vulnerability disclosure policy](https://www.eac.gov/vulnerability-disclosure-policy).
+Model Context Protocol servers that expose the API to agents.
 
-## Scope
+- [election-assistance-commission-mcp.yml](https://apis.io/servers/election-assistance-commission/election-assistance-commission-mcp-yml/)
 
-- **Type:** Contract
-- **Position:** Producing
-- **Access:** 3rd-Party
+#### Examples (7)
 
-## Tags
+Example requests and responses.
 
-Federal Government, Elections, Voting, Open Data, Voting Systems, Certification, Government Data,
-JSON API, Public Records
+- [Election Assistance Commission Eco Collection Example](https://apis.io/examples/election-assistance-commission/election-assistance-commission-eco-collection-example/)
+- [Election Assistance Commission Error 400 Example](https://apis.io/examples/election-assistance-commission/election-assistance-commission-error-400-example/)
+- [Election Assistance Commission Error 405 Readonly Example](https://apis.io/examples/election-assistance-commission/election-assistance-commission-error-405-readonly-example/)
+- [Election Assistance Commission Jsonapi Index Example](https://apis.io/examples/election-assistance-commission/election-assistance-commission-jsonapi-index-example/)
+- [Election Assistance Commission State Voter Info Example](https://apis.io/examples/election-assistance-commission/election-assistance-commission-state-voter-info-example/)
+- [Election Assistance Commission Test Lab Sparse Fieldset Example](https://apis.io/examples/election-assistance-commission/election-assistance-commission-test-lab-sparse-fieldset-example/)
+- [Election Assistance Commission Voting System Collection Example](https://apis.io/examples/election-assistance-commission/election-assistance-commission-voting-system-collection-example/)
 
-## Timestamps
+#### Overlays (1)
 
-- **Created:** 2024-12-03
-- **Modified:** 2026-09-06
+OpenAPI overlays, including conversational phrasing for each operation.
 
-## APIs
+- [Election Assistance Commission Jsonapi Overlay](https://apis.io/overlays/election-assistance-commission/election-assistance-commission-jsonapi-overlay/)
 
-### EAC Content JSON:API
+#### Security (3)
 
-**Human URL:** [https://www.eac.gov/research-and-data](https://www.eac.gov/research-and-data)
-**Base URL:** `https://www.eac.gov/jsonapi`
+Authentication, trust centre, and vulnerability disclosure.
 
-The OpenAPI description in `openapi/` was **derived by API Evangelist from live probes** — the EAC
-publishes none. Every path in it corresponds to a `links` entry in the resource-type index and was
-individually requested anonymously; resource types that were empty, withheld or erroring are
-recorded under `x-probe.excluded` rather than described.
+- [Election Assistance Commission Authentication](https://apis.io/security/election-assistance-commission/election-assistance-commission-authentication/)
+- [Election Assistance Commission Domain Security](https://apis.io/security/election-assistance-commission/election-assistance-commission-domain-security/)
+- [Election Assistance Commission Vulnerability Disclosure](https://apis.io/security/election-assistance-commission/election-assistance-commission-vulnerability-disclosure/)
 
-### EAC Open Data Catalog
+#### Plans and pricing (1)
 
-**Human URL:** [https://www.eac.gov/research-and-data/studies-and-reports](https://www.eac.gov/research-and-data/studies-and-reports)
-**Base URL:** `https://www.eac.gov`
+Published plans, tiers and prices.
 
-## Artifacts in this repository
+- [Election Assistance Commission Plans Pricing](https://apis.io/plans/election-assistance-commission/election-assistance-commission-plans-pricing/)
 
-| Directory | Contents |
+#### Rate limits (1)
+
+Published request limits.
+
+- [Election Assistance Commission Rate Limits](https://apis.io/rate-limits/election-assistance-commission/election-assistance-commission-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Election Assistance Commission Finops](https://apis.io/finops/election-assistance-commission/election-assistance-commission-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.eac.gov)
+- [Documentation](https://www.eac.gov/research-and-data)
+- [Support](https://www.eac.gov/contact)
+- [Blog](https://www.eac.gov/blogs)
+- [Security](https://www.eac.gov/vulnerability-disclosure-policy)
+- [Privacy policy](https://www.eac.gov/main/privacy-statement)
+- [GitHub](https://github.com/eacgov)
+
+## API Evangelist rating
+
+**Kin Score 32.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| `openapi/` | Derived OpenAPI 3.1 for the JSON:API surface — 173 GET operations |
-| `overlays/` | OpenAPI Overlay 1.0.0 carrying our consumer guidance separately from the probed facts |
-| `examples/` | Seven verbatim response bodies, including the 400 and 405 error documents |
-| `data-model/` | Derived entity graph for the certification programme |
-| `vocabulary/` | 19 EAC controlled vocabularies, 315 terms, harvested from the live API |
-| `datasets/` | The verbatim `data.json` catalog plus an assessment of it |
-| `conventions/` | Pagination, filtering, sorting, sparse fieldsets, includes, caching, error envelope |
-| `errors/` | Seven observed problem types, including the silent-authorization-omission trap |
-| `authentication/` | The (absent) auth model, with the probes that establish it |
-| `conformance/` | JSON:API 1.0 and Project Open Data v1.1 conformance, with evidence |
-| `lifecycle/` | Measured absence of versioning, deprecation, SLA and status page |
-| `rate-limits/`, `plans/` | Honest zeros — nothing published, nothing observed |
-| `packages/` | Registry searches, two name collisions ruled out, zero first-party SDKs |
-| `security/` | The EAC's real vulnerability disclosure policy, plus domain security probes |
-| `well-known/` | Five hosts × nine paths, all misses, recorded as data |
-| `skills/` | Three Agent Skills grounded in verified operationIds |
-| `mcp/` | A candidate tool list. **No MCP server exists** — the pointer is `X-MCPServerCandidate` |
-| `llms/` | A generated `llms.txt`; `https://www.eac.gov/llms.txt` returns 404 |
+| Discoverability | 58.9 |
+| Contract quality | 42.6 |
+| Contract governance | 33.3 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 10.5 |
 
-## Maintainers
+**Agent readiness 26.7** — agent-aware
 
-**FN:** Kin Lane
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-**Email:** kin@apievangelist.com
+**Regulatory alignment 26.5** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/election-assistance-commission/](https://apis.io/providers/election-assistance-commission/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Election Assistance Commission: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/election-assistance-commission/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
