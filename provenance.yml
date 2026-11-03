@@ -53,10 +53,13 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-02.yml:
+    method: unknown
+    evidence: no authorship recorded
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-10-31T095417.yml:
+  kin/checks-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -111,6 +114,15 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-10-31T095417.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-01T171331.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-01T200237.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/election-assistance-commission-lifecycle.yml:
@@ -174,12 +186,18 @@ artifacts:
   packages/election-assistance-commission-packages.yml:
     method: searched
     evidence: declared in the artifact
+  patterns/election-assistance-commission-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/election-assistance-commission-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
   rate-limits/election-assistance-commission-rate-limits.yml:
     method: unknown
     evidence: no authorship recorded
+  rules/election-assistance-commission-rules.yml:
+    method: generated
+    evidence: declared in the artifact
   security/election-assistance-commission-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
